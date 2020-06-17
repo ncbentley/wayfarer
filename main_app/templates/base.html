@@ -27,12 +27,26 @@
                     <li><a href="">Sign Up</a></li>
                     <!-- Else -->
                     <li><a href="">Profile</a></li>
-                    <li><a href="">Logout</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
                 </ul>
             </div>
         </nav>
     </header>
     <main>
+        <!-- Login Modal -->
+        <form action="{% url 'login' %}'" method="POST">
+            {% csrf_token %}
+            {{ login_form.as_p }}
+            <input type="submit" value="Login" class="btn">
+        </form>
+
+        <!-- Registration Modal -->
+        <form action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            {{ registration_form.as_p }}
+            <input type="submit" value="Register" class="btn">
+        </form>
+
         {% block content %}
         {% endblock %}
     </main>
