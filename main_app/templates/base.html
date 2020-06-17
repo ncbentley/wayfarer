@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayfarer</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}}">
+     <!-- Compiled and minified Materialize CSS -->
+     <link rel="stylesheet" href="{% static 'imports/materialize.min.css'%}">
+     <!-- Compiled and minified Materialize JavaScript -->
+     <script src="{% static 'imports/materialize.min.js'%}"></script>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
