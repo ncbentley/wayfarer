@@ -1,0 +1,32 @@
+.brand-logo {
+    margin-left: 5px;
+}
+
+.carousel {
+    position: relative;
+    height: 350px;
+}
+
+.carousel-item img {
+    object-fit: cover;
+}
+
+.carousel-fixed-item {
+    margin: 0 10px 0 10px;
+    position: absolute;
+    top: 50%;
+    padding: 0;
+    margin: 0;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.flip {
+    transform: rotate(180deg);
+}
+
+.wayfarer {
+    text-align: center;
+}

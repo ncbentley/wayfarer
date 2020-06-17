@@ -5,15 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wayfarer</title>
-    <link rel="stylesheet" href="{% static 'styles/styles.css' %}}">
-     <!-- Compiled and minified Materialize CSS -->
-     <link rel="stylesheet" href="{% static 'imports/materialize.min.css'%}">
-     <!-- Compiled and minified Materialize JavaScript -->
-     <script src="{% static 'imports/materialize.min.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <!-- Compiled and minified Materialize CSS -->
+    <link rel="stylesheet" href="{% static 'imports/materialize.min.css'%}">
+    <!-- Compiled and minified Materialize JavaScript -->
+    <script src="{% static 'imports/materialize.min.js'%}"></script>
+    <!-- Compiled and minified Jquery -->
+    <script src="{% static 'imports/jquery.min.js' %}"></script>
+    <!-- Materialize Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <header>
-
+    <header class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <!-- TODO: Logo -->
+                <a href="#" class="left brand-logo">Wayfarer</a>
+                <ul class="right">
+                    <!-- If -->
+                    <li><a href="">Sign In</a></li>
+                    <li><a href="">Sign Up</a></li>
+                    <!-- Else -->
+                    <li><a href="">Profile</a></li>
+                    <li><a href="">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
     <main>
         {% block content %}
