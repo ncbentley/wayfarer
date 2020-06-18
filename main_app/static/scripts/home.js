@@ -31,3 +31,26 @@ $('#signup').click((event) => {
     $('#login-link').removeClass('active');
     $('#signup-link').addClass('active');
 });
+
+// https://stackoverflow.com/a/5448635
+const  getSearchParameters = () => {
+    var prmstr = window.location.search.substr(1);
+    return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+}
+
+const transformToAssocArray = (prmstr) => {
+  var params = {};
+  var prmarr = prmstr.split("&");
+  for ( var i = 0; i < prmarr.length; i++) {
+      var tmparr = prmarr[i].split("=");
+      params[tmparr[0]] = tmparr[1];
+  }
+  return params;
+}
+
+var params = getSearchParameters();
+
+if (params.registration && params.registration === 'fail') {
+    $('#signup').click();
+    $('#registration-error').removeClass('hidden');
+}
