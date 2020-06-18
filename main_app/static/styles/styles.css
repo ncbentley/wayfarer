@@ -30,3 +30,7 @@
 .wayfarer {
     text-align: center;
 }
+
+form {
+    display: none;
+}
