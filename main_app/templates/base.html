@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wayfarer</title>
-    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
     <!-- Compiled and minified Jquery -->
     <script src="{% static 'imports/jquery.min.js' %}"></script>
     <!-- BOOTSTRAP -->
@@ -15,25 +14,27 @@
     <link rel="stylesheet" href="{% static 'imports/bootstrap.min.css' %}">
     <script src="{% static 'imports/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'imports/bootstrap.min.js' %}"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
 </head>
 
 <body>
     <header>
-        <nav>
-            <div class="nav-wrapper">
-                <!-- TODO: Logo -->
-                <a href="#" class="left brand-logo">Wayfarer</a>
-                <ul class="right">
-                    <!-- If -->
+        <nav class="navbar navbar-expand-lg">
+            <a href="#" class="navbar-brand">Wayfarer</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                    <!-- Else -->
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile'%}">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
-                    <li><a href="{% url 'login' %}">Sign In</a></li>
-                    <li><a href="{% url 'signup'%}">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Sign In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'signup'%}">Sign Up</a></li>
                     {% endif %}
-
                 </ul>
             </div>
         </nav>
