@@ -5,124 +5,136 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wayfarer</title>
-    <!-- Compiled and minified Jquery -->
-    <script src="{% static 'vendors/jquery.min.js' %}"></script>
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="{% static 'vendors/bootstrap-grid.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/bootstrap-reboot.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/bootstrap.min.css' %}">
-    <script src="{% static 'vendors/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'vendors/bootstrap.min.js' %}"></script>
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wayfarer</title>
+  <!-- Compiled and minified Jquery -->
+  <script src="{% static 'vendors/jquery.min.js' %}"></script>
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap-grid.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap-reboot.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap.min.css' %}">
+  <script src="{% static 'vendors/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendors/bootstrap.min.js' %}"></script>
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <a href="/" class="navbar-brand">Wayfarer</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    
-                    {% if user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'profile'%}">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
-                    {% else %}
-                    <li class="nav-item"><a class="nav-link" id="login" href="#panel1" data-toggle="modal" data-target="#modalLRForm">Sign In</a></li>
-                    <li class="nav-item"><a class="nav-link" id="signup" href="#panel2" data-toggle="modal" data-target="#modalLRForm">Sign Up</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <!--Modal: Login / Register Form-->
-<div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog cascading-modal" role="document">
-      <!--Content-->
-      <div class="modal-content">
-  
-        <!--Modal cascading tabs-->
-        <div class="modal-c-tabs">
-  
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs md-tabs tabs-2 white darken-3" role="tablist">
-            <li class="lrmodal nav-item col-md-6">
-              <a class="lrlink nav-link" id="login-link" data-toggle="tab" href="#panel1" role="tab"><i class="fas fa-user mr-1"></i>
-                Login</a>
-            </li>
-            <li class="lrmodal nav-item col-md-6">
-              <a class="lrlink nav-link" id="signup-link" data-toggle="tab" href="#panel2" role="tab"><i class="fas fa-user-plus mr-1"></i>
-                Register</a>
-            </li>
-          </ul>
-  
-          <!-- Tab panels -->
-          <div class="tab-content">
-            <!--Panel 1-->
-            <div class="tab-pane fade" id="panel1" role="tabpanel">
-  
-              <!--Body-->
-              <div class="modal-body mb-1">
-                  
-                <form action="{% url 'login' %}" method="POST">
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <a href="/" class="navbar-brand">Wayfarer</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+
+          {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'profile'%}">Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+          <li class="nav-item"><a class="nav-link" id="login" href="#panel1" data-toggle="modal"
+              data-target="#modalLRForm">Sign In</a></li>
+          <li class="nav-item"><a class="nav-link" id="signup" href="#panel2" data-toggle="modal"
+              data-target="#modalLRForm">Sign Up</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main class="h-100">
+    <!--Modal: Login / Register Form-->
+    <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+          <!--Modal cascading tabs-->
+          <div class="modal-c-tabs">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs md-tabs tabs-2 white darken-3" role="tablist">
+              <li class="lrmodal nav-item col-md-6">
+                <a class="lrlink nav-link" id="login-link" data-toggle="tab" href="#panel1" role="tab"><i
+                    class="fas fa-user mr-1"></i>
+                  Login</a>
+              </li>
+              <li class="lrmodal nav-item col-md-6">
+                <a class="lrlink nav-link" id="signup-link" data-toggle="tab" href="#panel2" role="tab"><i
+                    class="fas fa-user-plus mr-1"></i>
+                  Register</a>
+              </li>
+            </ul>
+
+            <!-- Tab panels -->
+            <div class="tab-content">
+              <!--Panel 1-->
+              <div class="tab-pane fade" id="panel1" role="tabpanel">
+
+                <!--Body-->
+                <div class="modal-body mb-1">
+
+                  <form action="{% url 'login' %}" method="POST">
                     {% csrf_token %}
                     {{ login_form|crispy }}
                     <div class="text-center mt-2">
-                        <button class="btn btn-info">
-                            Log in  
-                            <svg class="bi bi-person-plus-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-                                <path fill-rule="evenodd" d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
-                            </svg>
-                        </button>
+                      <button class="btn btn-info">
+                        Log in
+                        <svg class="bi bi-person-plus-fill" width="1em" height="1em" viewBox="0 0 16 16"
+                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                          <path fill-rule="evenodd"
+                            d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z" />
+                        </svg>
+                      </button>
                     </div>
-                </form>
-                
+                  </form>
+
+                </div>
+
               </div>
-  
-            </div>
-            <!--/.Panel 1-->
-  
-            <!--Panel 2-->
-            <div class="tab-pane fade" id="panel2" role="tabpanel">
-  
-              <!--Body-->
-              <div class="modal-body">
-                <form action="{% url 'signup' %}" method="POST">
+              <!--/.Panel 1-->
+
+              <!--Panel 2-->
+              <div class="tab-pane fade" id="panel2" role="tabpanel">
+
+                <!--Body-->
+                <div class="modal-body">
+                  <form action="{% url 'signup' %}" method="POST">
                     {% csrf_token %}
                     {{ registration_form|crispy }}
                     <div class="text-center form-sm mt-2">
-                        <button class="btn btn-info">
-                            Sign up 
-                            <svg class="bi bi-person-plus-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-                                <path fill-rule="evenodd" d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
-                            </svg>
-                        </button>
+                      <button class="btn btn-info">
+                        Sign up
+                        <svg class="bi bi-person-plus-fill" width="1em" height="1em" viewBox="0 0 16 16"
+                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                          <path fill-rule="evenodd"
+                            d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z" />
+                        </svg>
+                      </button>
                     </div>
-                </form>
+                  </form>
+                </div>
               </div>
+              <!--/.Panel 2-->
             </div>
-            <!--/.Panel 2-->
-          </div>
-  
-        </div>
-      </div>
-      <!--/.Content-->
-    </div>
-  </div>
-  <!--Modal: Login / Register Form-->
 
-        {% block content %}
-        {% endblock %}
-    </main>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!--Modal: Login / Register Form-->
+
+    {% block content %}
+    {% endblock %}
+  </main>
 </body>
 
 </html>

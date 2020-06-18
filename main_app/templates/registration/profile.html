@@ -1,47 +1,68 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <img src="https://i.imgur.com/UbyLP93.jpg?1" alt="Profile Picture">
-            <h3>Christine Gill</h3>
-            <p>Current City: Seattle</p>
-            <p>Date Joined: 06/18/2020 </p>
+<div class="container d-flex justify-content-center align-items-center h-100">
+    <div class="row d-flex justify-content-center align-items-center my-auto w-100">
+        <div class="col-md-4 d-flex justify-content-center text-center my-auto">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <img class="rounded-circle" src="https://i.imgur.com/UbyLP93.jpg?2" alt="Profile Picture">
+                    <h4>{{user.full_name}}</h4>
+                    <p>Current City: {{user.current_city}}</p>
+                    <p>Date Joined: {{user.date_joined}} </p>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Edit Profile
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="col">
-
-            <div>
-                <h3>Fremont Troll</h3>
-                <h4>Seattle, WA</h4>
-                <p>The Troll is a mixed media colossal statue, located on N. 36th Street at Troll Avenue N., under the
-                    north
-                    end of the George Washington Memorial Bridge (also known as the Aurora Bridge). It is clutching an
-                    actual Volkswagen Beetle, as if it had just swiped it from the roadway above. The vehicle has a
-                    California license plate. The Troll is 5.5 m (18 ft) high, weighs 6,000 kg (13,000 lb), and is made
-                    of
-                    steel rebar, wire, and concrete.</p>
+        <div class="col-md-5 my-auto">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <h5 class="card-title">Fremont Troll</h5>
+                    <h6 class="card-title">Seattle, WA</h6>
+                </div>
             </div>
-
-            <div>
-                <h3>Pike Place Market</h3>
-                <h4>Seattle, WA</h4>
-                <p>Pike Place Market is a public market in Seattle, Washington, United States. It opened on August 17,
-                    1907,
-                    and is one of the oldest continuously operated public farmers' markets in the United States.
-                    Overlooking
-                    the Elliott Bay waterfront on Puget Sound, it serves as a place of business for many small farmers,
-                    craftspeople and merchants. Named after the central street, Pike Place runs northwest from Pike
-                    Street
-                    to Virginia Street. Pike Place Market is Seattle's most popular tourist destination and the 33rd
-                    most
-                    visited tourist attraction in the world, with more than 10 million annual visitors.</p>
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <h5 class="card-title">Pike Place Market</h5>
+                    <h6 class="card-title">Seattle, WA</h6>
+                </div>
             </div>
-
         </div>
-
     </div>
 </div>
+
+<!-- Edit Form -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'edit_profile' %}" method="POST">
+                    {% csrf_token %}
+                    {{ edit_profile_form|crispy }}
+                    <div class="text-center form-sm mt-2">
+                        <button class="btn btn-info">Edit Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
