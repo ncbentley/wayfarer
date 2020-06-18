@@ -13,3 +13,4 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('full_name', 'current_city')
+        
