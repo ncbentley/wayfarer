@@ -9,6 +9,9 @@
 
 .carousel-item img {
     object-fit: cover;
+    height: 350px;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
 .carousel-fixed-item {
@@ -50,6 +53,11 @@
 
 .nav-link, .navbar-brand {
     color: var(--primary);
+    transition-duration: 0.3s;
+}
+
+.nav-link:hover, .navbar-brand:hover {
+    color: var(--purple);
 }
 
 .lrmodal {
@@ -78,4 +86,24 @@
 
 .navbar-toggler {
     color: var(--primary);
+    transition-duration: 0.3s;
+}
+
+.navbar-toggler:hover {
+    color: var(--purple);
+    background-color: var(--teal);
+}
+
+.control {
+    color: var(--primary);
+    font-size: 2em;
+    transition-duration: .3s;
+}
+
+.control:hover {
+    color: var(--purple);
+}
+
+.hidden {
+    display: none;
 }
