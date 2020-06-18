@@ -5,19 +5,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wayfarer</title>
-    <!-- Compiled and minified Jquery -->
-    <script src="{% static 'vendors/jquery.min.js' %}"></script>
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="{% static 'vendors/bootstrap-grid.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/bootstrap-reboot.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/bootstrap.min.css' %}">
-    <script src="{% static 'vendors/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'vendors/bootstrap.min.js' %}"></script>
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wayfarer</title>
+  <!-- Compiled and minified Jquery -->
+  <script src="{% static 'vendors/jquery.min.js' %}"></script>
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap-grid.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap-reboot.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/bootstrap.min.css' %}">
+  <script src="{% static 'vendors/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendors/bootstrap.min.js' %}"></script>
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
 </head>
 
 <body>
@@ -104,24 +104,29 @@
                    
 
                     <div class="text-center mt-2">
-                        <button class="btn btn-info">
-                            Log in  
-                            <svg class="bi bi-person-plus-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-                                <path fill-rule="evenodd" d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
-                            </svg>
-                        </button>
+                      <button class="btn btn-info">
+                        Log in
+                        <svg class="bi bi-person-plus-fill" width="1em" height="1em" viewBox="0 0 16 16"
+                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                          <path fill-rule="evenodd"
+                            d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z" />
+                        </svg>
+                      </button>
                     </div>
-                </form>
-                
+                  </form>
+
+                </div>
+
               </div>
-  
+
             </div>
             <!--/.Panel 1-->
-  
+
             <!--Panel 2-->
             <div class="tab-pane fade" id="panel2" role="tabpanel">
-  
+
               <!--Body-->
               <div class="modal-body">
                 <p id="registration-error" class="text-danger hidden">Invalid Signup. Please try again!</p>
@@ -186,17 +191,17 @@
             </div>
             <!--/.Panel 2-->
           </div>
-  
+
         </div>
       </div>
       <!--/.Content-->
     </div>
-  </div>
-  <!--Modal: Login / Register Form-->
+    </div>
+    <!--Modal: Login / Register Form-->
 
-        {% block content %}
-        {% endblock %}
-    </main>
+    {% block content %}
+    {% endblock %}
+  </main>
 </body>
 
 </html>
