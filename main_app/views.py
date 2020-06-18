@@ -21,7 +21,7 @@ def signup(request):
             login(request, user)
             return redirect('profile')
         else:
-            return redirect(request.META.get('HTTP_ORIGIN') + '?registration=fail', {'error_message': 'Invalid signup please try again'})
+            return redirect(request.META.get('HTTP_ORIGIN') + '?registration=fail')
     else:
         return redirect(request.META.get('HTTP_ORIGIN') + '?registration=fail')
 
@@ -33,3 +33,9 @@ def edit_profile(request):
         user.current_city = request.POST.get('current_city')
         user.save()
     return redirect('profile')
+def login(request):
+    if request.method == 'POST':
+        pass
+    else:
+        return redirect(request.META.get('HTTP_ORIGIN') + '?login=fail')
+
