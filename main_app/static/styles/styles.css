@@ -31,6 +31,19 @@
     text-align: center;
 }
 
+.btn-info {
+    color: var(--primary);
+    background-color: var(--cyan);
+    transition-duration: 0.3s;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: var(--teal);
+    color: var(--primary);
+    border: none;
+}
+
 .navbar {
     background-color: var(--cyan);
 }
@@ -39,6 +52,26 @@
     color: var(--primary);
 }
 
-form {
-    display: none;
+.lrmodal {
+    text-align: center;
+    padding: 0;
+}
+
+.lrlink {
+    color: darkgray;
+    background-color: gray;
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    border: none!important;
+    transition-duration: 0.3s;
+}
+
+.lrlink:hover {
+    color: var(--primary);
+    background-color: var(--teal);
+}
+
+.lrlink.active {
+    color: var(--primary);
+    background-color: white;
 }
