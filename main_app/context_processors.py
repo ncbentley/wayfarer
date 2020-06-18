@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import CustomUserCreationForm
 
 def login_form(request):
     return {
@@ -7,5 +8,5 @@ def login_form(request):
 
 def registration_form(request):
     return {
-        'registration_form': UserCreationForm()
+        'registration_form': CustomUserCreationForm()
     }
