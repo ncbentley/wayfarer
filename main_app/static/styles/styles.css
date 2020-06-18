@@ -31,6 +31,14 @@
     text-align: center;
 }
 
+.navbar {
+    background-color: var(--cyan);
+}
+
+.nav-link, .navbar-brand {
+    color: var(--primary);
+}
+
 form {
     display: none;
 }
