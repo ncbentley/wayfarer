@@ -98,16 +98,16 @@
 
               </div>
 
-            </div>
-            <!--/.Panel 1-->
-
-            <!--Panel 2-->
-            <div class="tab-pane fade" id="panel2" role="tabpanel">
-
-              <!--Body-->
-              <div class="modal-body">
-                <p id="registration-error" class="text-danger hidden">Invalid Signup. Please try again!</p>
-                <form action="{% url 'signup' %}" method="POST">
+              <!--/.Panel 1-->
+              
+              <!--Panel 2-->
+              <div class="tab-pane fade" id="panel2" role="tabpanel">
+              
+                
+                <!--Body-->
+                <div class="modal-body">
+                  <p id="registration-error" class="text-danger hidden">Invalid Signup. Please try again!</p>
+                  <form action="{% url 'signup' %}" method="POST">
                   {% csrf_token %}
                   {{ registration_form|crispy }}
                   <div class="text-center form-sm mt-2">
@@ -124,14 +124,14 @@
                   </div>
                 </form>
               </div>
+              </div>
+              <!--/.Panel 2-->
             </div>
-            <!--/.Panel 2-->
-          </div>
 
+          </div>
         </div>
+        <!--/.Content-->
       </div>
-      <!--/.Content-->
-    </div>
     </div>
     <!--Modal: Login / Register Form-->
 
