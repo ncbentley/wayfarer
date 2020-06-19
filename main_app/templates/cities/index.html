@@ -10,26 +10,26 @@
             <!-- Cities List -->
             <div class="col-4 d-flex justify-content-center flex-column city-container mx-auto">
                 <h1 class="ml-5 mt-2">Cities</h1>
-                <div class="city-card my-auto card shadow active">
+                <div class="city-card my-auto card shadow {% if city == 1 %}active{%endif%}">
                     <img src="{% static 'images/san-francisco.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
                     <h3 class="city ml-2">San Francisco</h3>
                 </div>
-                <div class="city-card my-auto card shadow">
+                <div class="city-card my-auto card shadow {% if city == 2 %}active{%endif%}">
                     <img src="{% static 'images/seattle.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
                     <h3 class="city ml-2">Seattle</h3>
                 </div>
-                <div class="city-card my-auto card shadow">
+                <div class="city-card my-auto card shadow {% if city == 3 %}active{%endif%}">
                     <img src="{% static 'images/london.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
                     <h3 class="city ml-2">London</h3>
                 </div>
-                <div class="city-card my-auto card shadow">
+                <div class="city-card my-auto card shadow {% if city == 4 %}active{%endif%}">
                     <img src="{% static 'images/sydney.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
                     <h3 class="city ml-2">Sydney</h3>
                 </div>
             </div>
             <!-- City Detail -->
             <!-- San Francisco -->
-            <div class="col-7 mx-auto city-detail">
+            <div class="col-7 mx-auto city-detail {% if city != 1 %}hidden{%endif%}">
                 <div class="row d-flex flex-row m-2 pb-lg-5">
                     <div class="titles">
                         <h1>San Francisco</h1>
@@ -53,7 +53,7 @@
                 {% endfor %}
             </div>
             <!-- Seattle -->
-            <div class="col-7 mx-auto city-detail hidden">
+            <div class="col-7 mx-auto city-detail {% if city != 2 %}hidden{%endif%}">
                 <div class="row d-flex flex-row m-2 pb-lg-5">
                     <div class="titles">
                         <h1>Seattle</h1>
@@ -79,7 +79,7 @@
                 </div>
             </div>
             <!-- London -->
-            <div class="col-7 mx-auto city-detail hidden">
+            <div class="col-7 mx-auto city-detail {% if city != 3 %}hidden{%endif%}">
                 <div class="row d-flex flex-row m-2 pb-lg-5">
                     <div class="titles">
                         <h1>London</h1>
@@ -103,7 +103,7 @@
                 {% endfor %}
             </div>
             <!-- Sydney -->
-            <div class="col-7 mx-auto city-detail hidden">
+            <div class="col-7 mx-auto city-detail {% if city != 4 %}hidden{%endif%}">
                 <div class="row d-flex flex-row m-2 pb-lg-5">
                     <div class="titles">
                         <h1>Sydney</h1>
