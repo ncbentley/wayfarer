@@ -96,6 +96,8 @@ div.col-1 {
     .icons {
         display: none;
     }
+}
+
 .navbar-toggler {
     color: var(--primary);
     transition-duration: 0.3s;

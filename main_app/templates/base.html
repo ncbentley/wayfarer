@@ -47,11 +47,10 @@
     </header>
     <main>
         <!--Modal: Login / Register Form-->
-<div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
       <!--Content-->
       <div class="modal-content">
-  
         <!--Modal cascading tabs-->
         <div class="modal-c-tabs">
   
@@ -98,11 +97,7 @@
                           {% csrf_token %}
                           {{ login_form|crispy }}
                         </div>
-
-                      </div>
                     </div>
-                   
-
                     <div class="text-center mt-2">
                       <button class="btn btn-info">
                         Log in
@@ -115,9 +110,8 @@
                         </svg>
                       </button>
                     </div>
-                  </form>
-
-                </div>
+                  </div>
+                </form>
 
               </div>
 
@@ -186,8 +180,8 @@
                             </svg>
                         </button>
                     </div>
+                  </div>
                 </form>
-              </div>
               </div>
               <!--/.Panel 2-->
             </div>
@@ -197,6 +191,7 @@
         <!--/.Content-->
       </div>
     </div>
+  </div>
     <!--Modal: Login / Register Form-->
 
     {% block content %}
