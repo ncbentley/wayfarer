@@ -22,7 +22,7 @@ CITIES = (
     ('seattle', 'Seattle')
 )
 
-class Form(models.Model):
+class Post(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     city = models.CharField(max_length=50, choices=CITIES, default=CITIES[0][0])
