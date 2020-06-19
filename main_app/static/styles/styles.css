@@ -1,5 +1,7 @@
-body {
+main {
     height: 100vh;
+    margin: 0px;
+
 }
 
 .brand-logo {
@@ -120,4 +122,15 @@ div.col-1 {
 
 .hidden {
     display: none;
+}
+
+.img-thumbnail {
+    height: 150px;
+    width: 150px;
+    margin-bottom: 30px;
+}
+
+#profile {
+    background: rgb(168,136,255);
+background: linear-gradient(180deg, rgba(168,136,255,1) 25%, rgba(255,255,255,1) 25%);
 }
