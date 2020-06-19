@@ -88,6 +88,16 @@ body {
     background-color: white;
 }
 
+div.col-1 {
+    color: var(--primary)
+}
+
+@media only screen and (max-width: 600px){
+    .icons {
+        display: none;
+    }
+}
+
 .navbar-toggler {
     color: var(--primary);
     transition-duration: 0.3s;
