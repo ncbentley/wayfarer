@@ -1,10 +1,9 @@
 body {
     background-color: var(--light-teal);
-    overflow: hidden;
 }
 
 main {
-    height: 100vh;
+    height: 94vh;
     margin: 0px;
 }
 
