@@ -23,18 +23,16 @@
         </div>
 
         <div class="col-md-5 my-auto">
-            <div class="card shadow p-3 mb-5 bg-white rounded">
-                <div class="card-body">
-                    <h5 class="card-title">Fremont Troll</h5>
-                    <h6 class="card-title">Seattle, WA</h6>
+            {%for post in posts%}
+            <a class="text-decoration-none post-link" href="{% url 'post' post.city.id post.id %}">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <h6 class="card-title">{{post.city}}</h6>
+                    </div>
                 </div>
-            </div>
-            <div class="card shadow p-3 mb-5 bg-white rounded">
-                <div class="card-body">
-                    <h5 class="card-title">Pike Place Market</h5>
-                    <h6 class="card-title">Seattle, WA</h6>
-                </div>
-            </div>
+            </a>
+            {%endfor%}
         </div>
     </div>
 </div>
