@@ -10,14 +10,16 @@
                 <div class="card-body">
                     <img class="img-thumbnail rounded-circle" src="{% static 'images/avatar.jpg'%}"
                         alt="Profile Picture">
-                    <h4>{{user.full_name}}</h4>
-                    <p>Current City: {{user.current_city}}</p>
-                    <p>Date Joined: {{user.date_joined}} </p>
+                    <h4>{{view_user.full_name}}</h4>
+                    <p>Current City: {{view_user.current_city}}</p>
+                    <p>Date Joined: {{view_user.date_joined}} </p>
                 </div>
                 <div class="card-body">
+                    {% if user.id == view_user.id %}
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
                         Edit Profile
                     </button>
+                    {%endif%}
                 </div>
             </div>
         </div>

@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm, EditPostForm
 
-from .models import City, Post
+from .models import City, Post, CustomUser
 
 # Create your views here.
 
@@ -27,9 +28,16 @@ def home(request):
             return redirect('cities')
         return render(request, 'home.html')
 
+@login_required
 def profile(request):
     posts = Post.objects.all().filter(user=request.user.id)
-    context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city}), 'posts': posts}
+    context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city}), 'posts': posts, 'view_user': request.user}
+    return render(request, 'registration/profile.html', context)
+
+def public_profile(request, user_name):
+    user = CustomUser.objects.get(username=user_name)
+    posts = Post.objects.all().filter(user=user.id)
+    context = {'view_user': user, 'posts': posts}
     return render(request, 'registration/profile.html', context)
 
 def signup(request):
@@ -44,6 +52,7 @@ def signup(request):
     else:
         return redirect(request.META.get('HTTP_ORIGIN') + '?registration=fail')
 
+@login_required
 def edit_profile(request):
     user = request.user
     form = EditProfileForm(request.POST)
@@ -77,6 +86,7 @@ def post(request, city_id, post_id):
     context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg', 'edit_post':edit_post}
     return render(request, 'cities/post.html', context)
 
+@login_required
 def create_post(request):
     form = NewPostForm(request.POST)
     if form.is_valid():
@@ -85,6 +95,7 @@ def create_post(request):
         post.save()
     return redirect(f'/cities/{post.city.id}')
 
+@login_required
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
     if post.user != request.user:
@@ -95,8 +106,11 @@ def edit_post(request, post_id):
             edit_post.save()
             return redirect(f'/cities/{post.city.id}/{post.id}', post_id=post_id)
 
+@login_required
 def delete_post(request, post_id):
     post = Post.objects.get(id=post_id)
+    if post.user != request.user:
+        return redirect(f'/cities/{post.city.id}/{post.id}')
     post.delete()
     return redirect(f'/cities/{post.city.id}')
     
