@@ -73,8 +73,8 @@
   
               <!--Body-->
               <div class="modal-body mb-1">
-                  
-                <form action="{% url 'login' %}" method="POST">
+                <p id="login-error" class="text-danger hidden">Invalid Login. Please try again!</p>
+                <form action="{% url 'home' %}" method="POST">
                   <div class="container">
                     <div class="row">
                   
