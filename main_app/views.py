@@ -1,13 +1,26 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import CustomUserCreationForm, EditProfileForm
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    if request.method == 'POST':
+        username_form = request.POST['username']
+        password_form = request.POST['password']
+        # authenticate user
+        user = authenticate(username=username_form, password=password_form)
+        if user is not None:
+            # login
+            login(request, user)
+            #redirect
+            return redirect('profile')
+        else:
+            return redirect(request.META.get('HTTP_ORIGIN') + '?login=fail')
+    else:
+        return render(request, 'home.html')
 
 def profile(request):
     context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city})}
@@ -33,9 +46,4 @@ def edit_profile(request):
         user.current_city = request.POST.get('current_city')
         user.save()
     return redirect('profile')
-def login(request):
-    if request.method == 'POST':
-        pass
-    else:
-        return redirect(request.META.get('HTTP_ORIGIN') + '?login=fail')
 
