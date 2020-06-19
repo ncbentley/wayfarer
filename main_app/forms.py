@@ -1,6 +1,7 @@
 from django import forms
+from django.db import models
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser
+from .models import CustomUser, Post, City
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -13,4 +14,8 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('full_name', 'current_city')
-        
+
+class NewPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('city', 'title', 'content')

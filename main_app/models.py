@@ -15,13 +15,6 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
-CITIES = (
-    ('san_francisco', 'San Francisco'),
-    ('london', 'London'),
-    ('sydney', 'Sydney'),
-    ('seattle', 'Seattle')
-)
-
 class City(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
@@ -29,7 +22,11 @@ class City(models.Model):
 
 
 class Post(models.Model):
+    time = models.TimeField(default=timezone.now)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     content = models.TextField(max_length=1000)
+
+    class Meta:
+        ordering = ['-time']

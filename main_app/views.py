@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from .forms import CustomUserCreationForm, EditProfileForm
+from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm
 
 from .models import City, Post
 
@@ -52,17 +52,32 @@ def edit_profile(request):
     return redirect('profile')
 
 def cities(request):
-    city = City.objects.all()
-    context = {'cities': city}
+    cities = City.objects.all()
+    context = {}
+    for city in cities:
+        context[city.name.lower().replace(' ', '')] = Post.objects.all().filter(city=city.id)
+    context['form'] = NewPostForm()
+    context['city'] = 1
     return render(request, 'cities/index.html', context)
 
 def city_index(request, city_id):
-    city = City.objects.get(id=city_id)
-    post = Post.objects.all().filter(city=city_id)
-    context = {'city': city, 'posts': post}
-    return render(request, 'cities/detail.html', context)
+    cities = City.objects.all()
+    context = {}
+    for city in cities:
+        context[city.name.lower().replace(' ', '')] = Post.objects.all().filter(city=city.id)
+    context['form'] = NewPostForm()
+    context['city'] = city_id
+    return render(request, 'cities/index.html', context)
 
 def post(request, city_id, post_id):
-    post = Post.objects.get(id=post_id)
-    context = {'post': post}
+    post = Post.objects.get(id=post_id, city=city_id)
+    context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg'}
     return render(request, 'cities/post.html', context)
+
+def create_post(request):
+    form = NewPostForm(request.POST)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.user = request.user
+        post.save()
+    return redirect(f'/cities/{post.city.id}')
