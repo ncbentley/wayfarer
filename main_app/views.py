@@ -39,3 +39,5 @@ def login(request):
     else:
         return redirect(request.META.get('HTTP_ORIGIN') + '?login=fail')
 
+def post(request):
+    pass
