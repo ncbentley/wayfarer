@@ -42,14 +42,16 @@
                     <button class="add-post" data-toggle="modal" data-target="#exampleModal">+</button>
                 </div>
                 {% for post in sanfrancisco %}
-                <div class="post-card my-auto card shadow d-flex flex-row m-2">
-                    <!-- Author image -->
-                    <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
-                    <div class="titles">
-                        <h3 class="post-title ml-2">{{post.title}}</h3>
-                        <p class="post-content ml-2">{{post.content}}</p>
+                <a href="{% url 'post' post.city.id post.id %}" class="post">
+                    <div class="post-card my-auto card shadow d-flex flex-row m-2">
+                        <!-- Author image -->
+                        <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
+                        <div class="titles">
+                            <h3 class="post-title ml-2">{{post.title}}</h3>
+                            <p class="post-content ml-2">{{post.content}}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
                 {% endfor %}
             </div>
             <!-- Seattle -->
@@ -67,14 +69,16 @@
                 </div>
                 <div class="posts overflow-auto mb-0">
                     {% for post in seattle %}
-                    <div class="post-card my-auto card shadow d-flex flex-row m-2">
-                        <!-- Author image -->
-                        <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
-                        <div class="titles">
-                            <h3 class="post-title ml-2">{{post.title}}</h3>
-                            <p class="post-content ml-2">{{post.content}}</p>
+                    <a href="{% url 'post' post.city.id post.id %}" class="post">
+                        <div class="post-card my-auto card shadow d-flex flex-row m-2">
+                            <!-- Author image -->
+                            <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
+                            <div class="titles">
+                                <h3 class="post-title ml-2">{{post.title}}</h3>
+                                <p class="post-content ml-2">{{post.content}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     {% endfor %}
                 </div>
             </div>
@@ -92,14 +96,16 @@
                     <button class="add-post" data-toggle="modal" data-target="#exampleModal">+</button>
                 </div>
                 {% for post in london %}
-                <div class="post-card my-auto card shadow d-flex flex-row m-2">
-                    <!-- Author image -->
-                    <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
-                    <div class="titles">
-                        <h3 class="post-title ml-2">{{post.title}}</h3>
-                        <p class="post-content ml-2">{{post.content}}</p>
+                <a href="{% url 'post' post.city.id post.id %}" class="post">
+                    <div class="post-card my-auto card shadow d-flex flex-row m-2">
+                        <!-- Author image -->
+                        <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
+                        <div class="titles">
+                            <h3 class="post-title ml-2">{{post.title}}</h3>
+                            <p class="post-content ml-2">{{post.content}}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
                 {% endfor %}
             </div>
             <!-- Sydney -->
@@ -116,14 +122,16 @@
                     <button class="add-post" data-toggle="modal" data-target="#exampleModal">+</button>
                 </div>
                 {% for post in sydney %}
-                <div class="post-card my-auto card shadow d-flex flex-row m-2">
-                    <!-- Author image -->
-                    <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
-                    <div class="titles">
-                        <h3 class="post-title ml-2">{{post.title}}</h3>
-                        <p class="post-content ml-2">{{post.content}}</p>
+                <a href="{% url 'post' post.city.id post.id %}" class="post">
+                    <div class="post-card my-auto card shadow d-flex flex-row m-2">
+                        <!-- Author image -->
+                        <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
+                        <div class="titles">
+                            <h3 class="post-title ml-2">{{post.title}}</h3>
+                            <p class="post-content ml-2">{{post.content}}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
                 {% endfor %}
             </div>
         </div>

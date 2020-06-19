@@ -213,3 +213,8 @@ div.col-1 {
 .posts {
     max-height: 400px;
 }
+
+a.post {
+    text-decoration: none;
+    color: var(--primary);
+}
