@@ -132,5 +132,5 @@ div.col-1 {
 
 #profile {
     background: rgb(168,136,255);
-background: linear-gradient(180deg, rgba(168,136,255,1) 25%, rgba(255,255,255,1) 25%);
+    background: linear-gradient(180deg, rgba(168,136,255,1) 25%, rgba(255,255,255,1) 25%);
 }
