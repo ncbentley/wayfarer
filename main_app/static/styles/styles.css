@@ -133,3 +133,12 @@ div.col-1 {
     background: rgb(168,136,255);
     background: linear-gradient(180deg, rgba(168,136,255,1) 25%, rgba(255,255,255,1) 25%);
 }
+
+.post-link {
+    color: var(--primary);
+    transition-duration: 0.3s;
+}
+
+.post-link:hover {
+    color: var(--purple);
+}
