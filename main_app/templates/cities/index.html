@@ -39,7 +39,9 @@
                 </div>
                 <div class="row ml-2 mt-lg-5 pt-lg-5">
                     <h1>Posts</h1>
+                    {% if user.is_authenticated %}
                     <button class="add-post" data-toggle="modal" data-target="#exampleModal">+</button>
+                    {%endif%}
                 </div>
                 {% for post in sanfrancisco %}
                 <a href="{% url 'post' post.city.id post.id %}" class="post">
@@ -65,7 +67,9 @@
                 </div>
                 <div class="row ml-2 mt-lg-5 pt-lg-5">
                     <h1>Posts</h1>
+                    {% if user.is_authenticated %}
                     <button class="add-post" data-toggle="modal" data-target="#exampleModal">+</button>
+                    {%endif%}
                 </div>
                 <div class="posts overflow-auto mb-0">
                     {% for post in seattle %}
@@ -93,7 +97,9 @@
                 </div>
                 <div class="row ml-2 mt-lg-5 pt-lg-5">
                     <h1>Posts</h1>
+                    {% if user.is_authenticated %}
                     <button class="add-post" data-toggle="modal" data-target="#exampleModal">+</button>
+                    {%endif%}
                 </div>
                 {% for post in london %}
                 <a href="{% url 'post' post.city.id post.id %}" class="post">
@@ -119,7 +125,9 @@
                 </div>
                 <div class="row ml-2 mt-lg-5 pt-lg-5">
                     <h1>Posts</h1>
+                    {% if user.is_authenticated %}
                     <button class="add-post" data-toggle="modal" data-target="#exampleModal">+</button>
+                    {%endif%}
                 </div>
                 {% for post in sydney %}
                 <a href="{% url 'post' post.city.id post.id %}" class="post">

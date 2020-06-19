@@ -17,12 +17,14 @@
                     <p class="card-title"> {{ post.content }} </p>
                 </div>
                 <div class="card-body">
+                    {% if post.user.id == user.id %}
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
                         Edit Post
                     </button>
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#deleteModal">
                         Delete Post
                     </button>
+                    {%endif%}
                 </div>
             </div>
         </div>
@@ -30,14 +32,15 @@
         <!-- user info card -->
         <div class="col-md-3 d-flex justify-content-center text-center py-5">
             <div class="card shadow bg-white rounded">
-                <div class="card-body">
-                    <img class="rounded-circle" width="100px" height="100px" src="{% static 'images/avatar.jpg' %}"
-                        alt="Profile Picture">
-                    <!-- TODO Change to user.full_name once create post form exists -->
-                    <h4>Published by: {{ post.user }}</h4>
-                    <p class='mt-sm-2'>Current City: {{ user.current_city }}</p>
-                </div>
-
+                <a class="profile-card" href="{% url 'public_profile' post.user.username %}">
+                    <div class="card-body">
+                        <img class="rounded-circle" width="100px" height="100px" src="{% static 'images/avatar.jpg' %}"
+                            alt="Profile Picture">
+                        <!-- TODO Change to user.full_name once create post form exists -->
+                        <h4>Published by: {{ post.user }}</h4>
+                        <p class='mt-sm-2'>Current City: {{ user.current_city }}</p>
+                    </div>
+                </a>
             </div>
         </div>
 

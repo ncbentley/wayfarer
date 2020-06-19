@@ -217,3 +217,8 @@ a.post {
     text-decoration: none;
     color: var(--primary);
 }
+
+a.profile-card {
+    text-decoration: none;
+    color: var(--primary);
+}
