@@ -22,8 +22,14 @@ CITIES = (
     ('seattle', 'Seattle')
 )
 
+class City(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
+
 class Post(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    city = models.CharField(max_length=50, choices=CITIES, default=CITIES[0][0])
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
     content = models.TextField(max_length=1000)

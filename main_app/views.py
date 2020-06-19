@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
 from .forms import CustomUserCreationForm, EditProfileForm
+
+from .models import City, Post
 
 # Create your views here.
 
@@ -47,3 +50,18 @@ def edit_profile(request):
         user.save()
     return redirect('profile')
 
+def cities(request):
+    city = City.objects.all()
+    context = {'cities': city}
+    return render(request, 'cities/index.html', context)
+
+def city_index(request, city_id):
+    city = City.objects.get(id=city_id)
+    post = Post.objects.all()
+    context = {'city': city, 'posts': post}
+    return render(request, 'cities/detail.html', context)
+
+def post(request, city_id, post_id):
+    post = Post.objects.get(id=post_id)
+    context = {'post': post}
+    return render(request, 'cities/post.html', context)
