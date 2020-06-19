@@ -9,12 +9,12 @@ main {
 
 .carousel {
     position: relative;
-    height: 350px;
+    height: 450px;
 }
 
 .carousel-item img {
     object-fit: cover;
-    height: 350px;
+    height: 450px;
     background-position: center center;
     background-repeat: no-repeat;
 }
@@ -132,4 +132,13 @@ div.col-1 {
 #profile {
     background: rgb(168,136,255);
     background: linear-gradient(180deg, rgba(168,136,255,1) 25%, rgba(255,255,255,1) 25%);
+}
+
+.post-link {
+    color: var(--primary);
+    transition-duration: 0.3s;
+}
+
+.post-link:hover {
+    color: var(--purple);
 }

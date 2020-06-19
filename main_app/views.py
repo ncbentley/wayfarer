@@ -26,7 +26,8 @@ def home(request):
         return render(request, 'home.html')
 
 def profile(request):
-    context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city})}
+    posts = Post.objects.all().filter(user=request.user.id)
+    context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city}), 'posts': posts}
     return render(request, 'registration/profile.html', context)
 
 def signup(request):
@@ -57,7 +58,7 @@ def cities(request):
 
 def city_index(request, city_id):
     city = City.objects.get(id=city_id)
-    post = Post.objects.all()
+    post = Post.objects.all().filter(city=city_id)
     context = {'city': city, 'posts': post}
     return render(request, 'cities/detail.html', context)
 
