@@ -54,3 +54,8 @@ if (params.registration && params.registration === 'fail') {
     $('#signup').click();
     $('#registration-error').removeClass('hidden');
 }
+
+if (params.login && params.login === 'fail') {
+    $('#login').click();
+    $('#login-error').removeClass('hidden');
+}
