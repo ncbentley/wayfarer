@@ -1,6 +1,15 @@
+body {
+    background-color: var(--light-teal);
+    overflow: hidden;
+}
+
 main {
     height: 100vh;
     margin: 0px;
+}
+
+header {
+    border: 1px solid var(--primary);
 }
 
 .brand-logo {
@@ -141,4 +150,66 @@ div.col-1 {
 
 .post-link:hover {
     color: var(--purple);
+}
+
+#city-img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.city-preview {
+    height: 80px;
+    width: 100px;
+    object-fit: cover;
+}
+
+.city-img {
+    height: 200px;
+    width: 300px;
+    object-fit: cover;
+    border: 1px solid var(--primary);
+    position: absolute;
+    right: 10px;
+}
+
+.city-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 1em;
+    transition-duration: 0.3s;
+}
+
+.city-card:hover {
+    cursor: pointer;
+    background-color: var(--purple);
+}
+
+.city-card.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.city-container {
+    border: 1px solid var(--primary);
+    background-color: var(--cyan);
+    color: var(--primary);
+}
+
+.avatar {
+    height: 100px;
+    width: 100px;
+}
+
+.city-detail {
+    border: 1px solid var(--primary);
+}
+
+.city-detail row {
+    position: relative;
+}
+
+.posts {
+    max-height: 400px;
 }

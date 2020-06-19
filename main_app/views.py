@@ -52,8 +52,10 @@ def edit_profile(request):
     return redirect('profile')
 
 def cities(request):
-    city = City.objects.all()
-    context = {'cities': city}
+    cities = City.objects.all()
+    context = {}
+    for city in cities:
+        context[city.name.lower().replace(' ', '')] = Post.objects.all().filter(city=city.id)
     return render(request, 'cities/index.html', context)
 
 def city_index(request, city_id):
@@ -63,6 +65,6 @@ def city_index(request, city_id):
     return render(request, 'cities/detail.html', context)
 
 def post(request, city_id, post_id):
-    post = Post.objects.get(id=post_id)
-    context = {'post': post}
+    post = Post.objects.get(id=post_id, city=city_id)
+    context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg'}
     return render(request, 'cities/post.html', context)
