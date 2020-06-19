@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Cities</h1>
+
+    {% for city in cities %}
+        <p>{{ city.name }}</p>
+    {% endfor %}
+
+{% endblock %}
