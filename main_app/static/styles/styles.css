@@ -9,12 +9,12 @@ main {
 
 .carousel {
     position: relative;
-    height: 350px;
+    height: 450px;
 }
 
 .carousel-item img {
     object-fit: cover;
-    height: 350px;
+    height: 450px;
     background-position: center center;
     background-repeat: no-repeat;
 }
