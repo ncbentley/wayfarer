@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm
+from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm, EditPostForm
 
 from .models import City, Post
 
@@ -23,6 +23,8 @@ def home(request):
         else:
             return redirect(request.META.get('HTTP_ORIGIN') + '?login=fail')
     else:
+        if request.user.is_authenticated:
+            return redirect('cities')
         return render(request, 'home.html')
 
 def profile(request):
@@ -71,7 +73,8 @@ def city_index(request, city_id):
 
 def post(request, city_id, post_id):
     post = Post.objects.get(id=post_id, city=city_id)
-    context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg'}
+    edit_post = EditPostForm(instance=post)
+    context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg', 'edit_post':edit_post}
     return render(request, 'cities/post.html', context)
 
 def create_post(request):
@@ -81,3 +84,19 @@ def create_post(request):
         post.user = request.user
         post.save()
     return redirect(f'/cities/{post.city.id}')
+
+def edit_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if post.user != request.user:
+        return redirect(f'/cities/{post.city.id}/{post.id}')
+    if request.method == 'POST':
+        edit_post = EditPostForm(request.POST, instance=post)
+        if edit_post.is_valid():
+            edit_post.save()
+            return redirect(f'/cities/{post.city.id}/{post.id}', post_id=post_id)
+
+def delete_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    post.delete()
+    return redirect(f'/cities/{post.city.id}')
+    
