@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from .forms import CustomUserCreationForm, EditProfileForm
+from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm
 
 from .models import City, Post
 
@@ -56,6 +56,7 @@ def cities(request):
     context = {}
     for city in cities:
         context[city.name.lower().replace(' ', '')] = Post.objects.all().filter(city=city.id)
+    context['form'] = NewPostForm()
     return render(request, 'cities/index.html', context)
 
 def city_index(request, city_id):
@@ -68,3 +69,11 @@ def post(request, city_id, post_id):
     post = Post.objects.get(id=post_id, city=city_id)
     context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg'}
     return render(request, 'cities/post.html', context)
+
+def create_post(request):
+    form = NewPostForm(request.POST)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.user = request.user
+        post.save()
+    return redirect(f'/cities/{post.city.id}')
