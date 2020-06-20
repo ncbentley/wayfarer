@@ -1,3 +1,8 @@
+*/:root{
+    --main-font: font-family: 'Roboto', sans-serif;
+    --small-font: font-family: 'Roboto Condensed', sans-serif;
+}
+
 body {
     background-color: var(--light-teal);
 }
@@ -7,9 +12,6 @@ main {
     margin: 0px;
 }
 
-header {
-    border: 1px solid var(--primary);
-}
 
 .brand-logo {
     margin-left: 5px;
@@ -167,7 +169,6 @@ div.col-1 {
     height: 200px;
     width: 300px;
     object-fit: cover;
-    border: 1px solid var(--primary);
     position: absolute;
     right: 10px;
 }
@@ -191,7 +192,6 @@ div.col-1 {
 }
 
 .city-container {
-    border: 1px solid var(--primary);
     background-color: var(--cyan);
     color: var(--primary);
 }
@@ -199,10 +199,6 @@ div.col-1 {
 .avatar {
     height: 100px;
     width: 100px;
-}
-
-.city-detail {
-    border: 1px solid var(--primary);
 }
 
 .city-detail row {
@@ -221,4 +217,17 @@ a.post {
 a.profile-card {
     text-decoration: none;
     color: var(--primary);
+}
+
+button.edit {
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    color: var(--primary);
+    transition-duration: 0.3s;
+}
+
+button.edit:hover {
+    cursor: pointer;
+    color: var(--purple);
 }
