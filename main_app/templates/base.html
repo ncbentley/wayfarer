@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="{% static 'vendors/bootstrap.min.css' %}">
   <script src="{% static 'vendors/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'vendors/bootstrap.min.js' %}"></script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet">
   <!-- Custom Styles -->
   <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
 </head>
@@ -23,6 +26,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm">
+            <img width="45em" height="45em" class="navbar-brand mr-4 mb-2" src="{% static 'images/logo-2.png'%}" alt="wayfarer-logo">
             <a href="/" class="navbar-brand">Wayfarer</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
@@ -125,9 +129,6 @@
               <div class="modal-body">
                 <p id="registration-error" class="text-danger hidden">Invalid Signup. Please try again!</p>
                 <form action="{% url 'signup' %}" method="POST">
-                  <div class="container">
-                    <div class="row">
-                  
                         <div class="col-1 my-auto pt-4 icons">
                           <!-- full name icon-->
                           <svg class="bi bi-person-fill" style="margin: 15px 0 60px 0;" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
