@@ -7,21 +7,7 @@ const executeCityClick = (div) => {
         }
         x += 1;
     }
-    $('.city-detail').addClass('hidden');
-    $($('.city-detail')[x]).removeClass('hidden');
-    $('.city-card').removeClass('active');
-    $(div).addClass('active');
-    let city = "";
-    if (x === 0) {
-        city = "sanfrancisco";
-    } else if (x == 1) {
-        city = "seattle";
-    } else if (x == 2) {
-        city = "london";
-    } else {
-        city = "sydney"
-    }
-    window.history.replaceState({}, 'Wayfarer', `/cities/${city}/`);
+    window.location.href = `/cities/${x+1}`;
 }
 
 $('.city-card').on('click', (event) => {

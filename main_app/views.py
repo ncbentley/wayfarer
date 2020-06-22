@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm, EditPostForm
 
@@ -75,9 +76,10 @@ def city_index_by_name(request, city_name):
     for city in cities:
         if city.name.lower().replace(' ', '') == city_name:
             city_id = city.id
-        context[city.name.lower().replace(' ', '')] = Post.objects.all().filter(city=city.id)
+            context['posts'] = Post.objects.all().filter(city=city.id)
+            break
+    context['city'] = city
     context['form'] = NewPostForm()
-    context['city'] = city_id
     return render(request, 'cities/index.html', context)
 
 def post_by_city_name(request, city_name, post_id):
