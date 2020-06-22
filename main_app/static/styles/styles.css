@@ -295,6 +295,10 @@ a.post:hover {
     border-radius: 5px;
 }
 
+.city-title {
+    color: var(--cyan)
+}
+
 input.search::placeholder {
     color: var(--cyan);
 }
