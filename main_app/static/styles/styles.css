@@ -351,3 +351,8 @@ h1.wayfarer {
 .col.card.m-3.shadow {
     color: var(--primary);
 }
+
+.badge-dark {
+    background-color: white;
+    color: var(--primary);
+}

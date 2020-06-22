@@ -32,11 +32,20 @@ def home(request):
 @login_required
 def profile(request):
     posts = Post.objects.all().filter(user=request.user.id)
-    context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city}), 'posts': posts, 'view_user': request.user}
+    cities = {}
+    for post in posts:
+        city = post.city.name.lower().replace(' ', '')
+        if city in cities.keys():
+            cities[city] += 1
+        else:
+            cities[city] = 1
+    context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city}), 'posts': posts, 'view_user': request.user, 'cities': cities}
     return render(request, 'registration/profile.html', context)
 
 def public_profile(request, user_name):
     user = CustomUser.objects.get(username=user_name)
+    if request.user == user:
+        return redirect('/profile')
     posts = Post.objects.all().filter(user=user.id)
     context = {'view_user': user, 'posts': posts}
     return render(request, 'registration/profile.html', context)
