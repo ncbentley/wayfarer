@@ -133,6 +133,7 @@ div.col-1 {
 }
 
 .profile-pic {
+    object-fit: cover;
     height: 200px;
     width: 200px;
     margin-bottom: 30px;
@@ -140,6 +141,7 @@ div.col-1 {
 }
 
 .profile-pic-sm {
+    object-fit: cover;
     height: 150px;
     width: 150px;
     margin-bottom: 30px;
@@ -259,6 +261,7 @@ a.profile-card:hover{
 }
 
 .avatar {
+    object-fit: cover;
     height: 100px;
     width: 100px;
 }

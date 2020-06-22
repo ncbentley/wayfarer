@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
-from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm, EditPostForm
+from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm, EditPostForm, ImageForm
 
 from .models import City, Post, CustomUser
 
@@ -31,16 +31,24 @@ def home(request):
 
 @login_required
 def profile(request):
-    posts = Post.objects.all().filter(user=request.user.id)
-    cities = {}
-    for post in posts:
-        city = post.city.name.lower().replace(' ', '')
-        if city in cities.keys():
-            cities[city] += 1
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/profile')
         else:
-            cities[city] = 1
-    context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city}), 'posts': posts, 'view_user': request.user, 'cities': cities}
-    return render(request, 'registration/profile.html', context)
+            print(form.errors)
+    else:
+        posts = Post.objects.all().filter(user=request.user.id)
+        cities = {}
+        for post in posts:
+            city = post.city.name.lower().replace(' ', '')
+            if city in cities.keys():
+                cities[city] += 1
+            else:
+                cities[city] = 1
+        context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city}), 'posts': posts, 'view_user': request.user, 'cities': cities, 'image_form':ImageForm()}
+        return render(request, 'registration/profile.html', context)
 
 def public_profile(request, user_name):
     user = CustomUser.objects.get(username=user_name)

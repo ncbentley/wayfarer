@@ -10,6 +10,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(max_length=50)
     date_joined = models.DateField(default=timezone.now)
     current_city = models.CharField(max_length=50)
+    image = models.ImageField(default='images/avatar.jpg', upload_to='images/profile_pics')
 
     REQUIRED = ['full_name', 'email', 'current_city']
 
@@ -31,3 +32,4 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-time']
+

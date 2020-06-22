@@ -24,3 +24,8 @@ class EditPostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'content')
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ('image',)
