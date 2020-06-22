@@ -31,3 +31,10 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-time']
+
+class Image(models.Model):
+    image = models.ImageField(upload_to='images')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "myapp_image"
