@@ -63,16 +63,16 @@ main {
 }
 
 .navbar {
-    background-color: var(--cyan);
+    background-color: var(--primary);
 }
 
 .nav-link, .navbar-brand {
-    color: var(--primary);
+    color: var(--cyan);
     transition-duration: 0.3s;
 }
 
 .nav-link:hover, .navbar-brand:hover {
-    color: var(--purple);
+    color: var(--teal);
 }
 
 .lrmodal {
@@ -270,4 +270,10 @@ border-radius: 10px;
 ::-webkit-scrollbar-thumb {
     background: gray; 
     border-radius: 10px;
+h1.wayfarer {
+    color: var(--primary);
+}
+
+.col.card.m-3.shadow {
+    color: var(--primary);
 }

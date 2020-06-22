@@ -63,13 +63,7 @@ def edit_profile(request):
     return redirect('profile')
 
 def cities(request):
-    cities = City.objects.all()
-    context = {}
-    for city in cities:
-        context[city.name.lower().replace(' ', '')] = Post.objects.all().filter(city=city.id)
-    context['form'] = NewPostForm()
-    context['city'] = 1
-    return render(request, 'cities/index.html', context)
+    return redirect('/cities/1')
 
 def city_index(request, city_id):
     cities = City.objects.all()
