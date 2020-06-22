@@ -66,19 +66,29 @@ def cities(request):
     return redirect('/cities/1')
 
 def city_index(request, city_id):
+    city = City.objects.get(id=city_id)
+    return redirect(f'/cities/{city.name.lower().replace(" ", "")}')
+
+def city_index_by_name(request, city_name):
     cities = City.objects.all()
     context = {}
     for city in cities:
+        if city.name.lower().replace(' ', '') == city_name:
+            city_id = city.id
         context[city.name.lower().replace(' ', '')] = Post.objects.all().filter(city=city.id)
     context['form'] = NewPostForm()
     context['city'] = city_id
     return render(request, 'cities/index.html', context)
 
-def post(request, city_id, post_id):
-    post = Post.objects.get(id=post_id, city=city_id)
+def post_by_city_name(request, city_name, post_id):
+    post = Post.objects.get(id=post_id)
     edit_post = EditPostForm(instance=post)
     context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg', 'edit_post':edit_post}
     return render(request, 'cities/post.html', context)
+
+def post(request, city_id, post_id):
+    city = City.objects.get(id=city_id)
+    return redirect(f'/cities/{city.name.lower().replace(" ", "")}/{post_id}')
 
 @login_required
 def create_post(request):

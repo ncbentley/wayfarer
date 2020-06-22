@@ -11,7 +11,17 @@ const executeCityClick = (div) => {
     $($('.city-detail')[x]).removeClass('hidden');
     $('.city-card').removeClass('active');
     $(div).addClass('active');
-    window.history.replaceState({}, 'Wayfarer', `/cities/${x + 1}/`);
+    let city = "";
+    if (x === 0) {
+        city = "sanfrancisco";
+    } else if (x == 1) {
+        city = "seattle";
+    } else if (x == 2) {
+        city = "london";
+    } else {
+        city = "sydney"
+    }
+    window.history.replaceState({}, 'Wayfarer', `/cities/${city}/`);
 }
 
 $('.city-card').on('click', (event) => {

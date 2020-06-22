@@ -13,7 +13,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ post.title }}</h5>
                     <h6 class="card-title">{{ post.city }}</h6>
-                    <p class="card-title"> {{ post.content }} </p>
+                    <p class="card-title truncated"> {{ post.content|truncatechars:1000 }} {% if post.content|length > 1000 %}... <a href="#shown" class="see-more">See More</a>{%endif%}</p>
+                    <p id="shown" class="card-title shown hidden">{{post.content}}</p>
                 </div>
                 <div class="card-body">
                     {% if post.user.id == user.id %}
@@ -89,6 +90,8 @@
         </div>
     </div>
 </div>
+
+<script src="{% static 'scripts/post.js' %}"></script>
 
 
 {% endblock %}
