@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm, EditPostForm
 
@@ -66,19 +67,35 @@ def cities(request):
     return redirect('/cities/1')
 
 def city_index(request, city_id):
+    city = City.objects.get(id=city_id)
+    return redirect(f'/cities/{city.name.lower().replace(" ", "")}')
+
+def city_index_by_name(request, city_name):
     cities = City.objects.all()
-    context = {}
     for city in cities:
-        context[city.name.lower().replace(' ', '')] = Post.objects.all().filter(city=city.id)
-    context['form'] = NewPostForm()
-    context['city'] = city_id
+        if city.name.lower().replace(' ', '') == city_name:
+            city_id = city.id
+            posts = Post.objects.all().filter(city=city.id)
+            break
+    paginator = Paginator(posts, 10)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'city': city,
+        'form': NewPostForm(),
+        'page_obj': page_obj
+    }
     return render(request, 'cities/index.html', context)
 
-def post(request, city_id, post_id):
-    post = Post.objects.get(id=post_id, city=city_id)
+def post_by_city_name(request, city_name, post_id):
+    post = Post.objects.get(id=post_id)
     edit_post = EditPostForm(instance=post)
     context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg', 'edit_post':edit_post}
     return render(request, 'cities/post.html', context)
+
+def post(request, city_id, post_id):
+    city = City.objects.get(id=city_id)
+    return redirect(f'/cities/{city.name.lower().replace(" ", "")}/{post_id}')
 
 @login_required
 def create_post(request):

@@ -27,7 +27,7 @@ class Post(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    content = models.TextField(max_length=1000)
+    content = models.TextField(max_length=4000)
 
     class Meta:
         ordering = ['-time']

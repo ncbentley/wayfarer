@@ -10,30 +10,30 @@
                 <!-- Cities List -->
                 <div class="col-4 h-100 d-flex justify-content-center flex-column city-container mx-auto card shadow rounded">
                     <h2 class="ml-3 mt-2">Cities</h2>
-                    <div class="city-card my-auto card shadow {% if city == 1 %}active{%endif%}">
+                    <div class="city-card my-auto card shadow {% if city.id == 1 %}active{%endif%}">
                         <img src="{% static 'images/san-francisco.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
                         <h3 class="city ml-2">San Francisco</h3>
                     </div>
-                    <div class="city-card my-auto card shadow {% if city == 2 %}active{%endif%}">
+                    <div class="city-card my-auto card shadow {% if city.id == 2 %}active{%endif%}">
                         <img src="{% static 'images/seattle.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
                         <h3 class="city ml-2">Seattle</h3>
                     </div>
-                    <div class="city-card my-auto card shadow {% if city == 3 %}active{%endif%}">
+                    <div class="city-card my-auto card shadow {% if city.id == 3 %}active{%endif%}">
                         <img src="{% static 'images/london.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
                         <h3 class="city ml-2">London</h3>
                     </div>
-                    <div class="city-card my-auto card shadow {% if city == 4 %}active{%endif%}">
+                    <div class="city-card my-auto card shadow {% if city.id == 4 %}active{%endif%}">
                         <img src="{% static 'images/sydney.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
                         <h3 class="city ml-2">Sydney</h3>
                     </div>
                 </div>
                 <!-- City Detail -->
                 <!-- San Francisco -->
-                <div class="col-7 h-100 mx-auto city-detail {% if city != 1 %}hidden{%endif%} card shadow rounded" style="color: var(--primary)">
+                <div class="col-7 h-100 mx-auto city-detail card shadow rounded" style="color: var(--primary)">
                     <div class="row d-flex flex-row m-2 pb-lg-5">
                         <div class="titles">
-                            <h1>San Francisco</h1>
-                            <h3>United States of America</h3>
+                            <h1>{{city.name}}</h1>
+                            <h3>{% if city.name == 'San Francisco' or city.name == 'Seattle'%}United States of America{% elif city.name == 'London' %}United Kingdom{% else %}Australia{%endif%}</h3>
                         </div>
                         <img src="{% static 'images/san-francisco.jpg' %}" class="city-img mx-auto">
                     </div>
@@ -48,7 +48,7 @@
                         {%endif%}
                     </div>
                     <div class="overflow-auto h-50">
-                        {% for post in sanfrancisco %}
+                        {% for post in page_obj %}
                         <a href="{% url 'post' post.city.id post.id %}" class="post">
                             <div class="mt-2 mb-2">
                                 <div class="post-card my-auto card shadow d-flex flex-row m-2 pt-2">
@@ -61,104 +61,22 @@
                             </div>
                         </a>
                         {% endfor %}
-                    </div>
-                </div>
-                <!-- Seattle -->
-                <div class="col-7 h-100 mx-auto city-detail {% if city != 2 %}hidden{%endif%} card shadow rounded" style="color: var(--primary)">
-                    <div class="row d-flex flex-row m-2 pb-lg-5">
-                        <div class="titles">
-                            <h1>Seattle</h1>
-                            <h3>United States of America</h3>
+                        <div class="pagination">
+                            <span class="step-links">
+                                {% if page_obj.has_previous %}
+                                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                {% endif %}
+
+                                <span class="current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                </span>
+
+                                {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                {% endif %}
+                            </span>
                         </div>
-                        <img src="{% static 'images/seattle.jpg' %}" class="city-img mx-auto">
                     </div>
-                    <div class="row ml-2 mt-lg-5 pt-lg-5">
-                        <h2>Posts</h2>
-                        {% if user.is_authenticated %}
-                        <button class="add-post" data-toggle="modal" data-target="#exampleModal">
-                            <svg class="bi bi-plus-circle-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
-                            </svg>
-                        </button>
-                        {%endif%}
-                    </div>
-                    <div class="posts overflow-auto mb-0">
-                        {% for post in seattle %}
-                        <a href="{% url 'post' post.city.id post.id %}" class="post">
-                            <div class="post-card my-auto card shadow d-flex flex-row m-2">
-                                <!-- Author image -->
-                                <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
-                                <div class="titles">
-                                    <h3 class="post-title ml-2">{{post.title}}</h3>
-                                </div>
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
-                <!-- London -->
-                <div class="col-7 h-100 mx-auto city-detail {% if city != 3 %}hidden{%endif%} card shadow rounded" style="color: var(--primary)">
-                    <div class="row d-flex flex-row m-2 pb-lg-5">
-                        <div class="titles">
-                            <h1>London</h1>
-                            <h3>United Kingdom</h3>
-                        </div>
-                        <img src="{% static 'images/london.jpg' %}" class="city-img mx-auto">
-                    </div>
-                    <div class="row ml-2 mt-lg-5 pt-lg-5">
-                        <h2>Posts</h2>
-                        {% if user.is_authenticated %}
-                        <button class="add-post" data-toggle="modal" data-target="#exampleModal">                            
-                            <svg class="bi bi-plus-circle-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
-                            </svg>
-                        </button>
-                        {%endif%}
-                    </div>
-                    {% for post in london %}
-                    <a href="{% url 'post' post.city.id post.id %}" class="post">
-                        <div class="post-card my-auto card shadow d-flex flex-row m-2">
-                            <!-- Author image -->
-                            <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
-                            <div class="titles">
-                                <h3 class="post-title ml-2">{{post.title}}</h3>
-                                
-                            </div>
-                        </div>
-                    </a>
-                    {% endfor %}
-                </div>
-                <!-- Sydney -->
-                <div class="col-7 h-100 mx-auto city-detail {% if city != 4 %}hidden{%endif%} card shadow rounded" style="color: var(--primary)">
-                    <div class="row d-flex flex-row m-2 pb-lg-5">
-                        <div class="titles">
-                            <h1>Sydney</h1>
-                            <h3>Australia</h3>
-                        </div>
-                        <img src="{% static 'images/sydney.jpg' %}" class="city-img mx-auto">
-                    </div>
-                    <div class="row ml-2 mt-lg-5 pt-lg-5">
-                        <h2>Posts</h2>
-                        {% if user.is_authenticated %}
-                        <button class="add-post" data-toggle="modal" data-target="#exampleModal">                            
-                            <svg class="bi bi-plus-circle-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
-                            </svg>
-                        </button>
-                        {%endif%}
-                    </div>
-                    {% for post in sydney %}
-                    <a href="{% url 'post' post.city.id post.id %}" class="post">
-                        <div class="post-card my-auto card shadow d-flex flex-row m-2">
-                            <!-- Author image -->
-                            <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
-                            <div class="titles">
-                                <h3 class="post-title ml-2 ">{{post.title}}</h3>
-                                
-                            </div>
-                        </div>
-                    </a>
-                    {% endfor %}
                 </div>
             </div>
         </div>
