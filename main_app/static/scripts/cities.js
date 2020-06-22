@@ -7,11 +7,7 @@ const executeCityClick = (div) => {
         }
         x += 1;
     }
-    $('.city-detail').addClass('hidden');
-    $($('.city-detail')[x]).removeClass('hidden');
-    $('.city-card').removeClass('active');
-    $(div).addClass('active');
-    window.history.replaceState({}, 'Wayfarer', `/cities/${x + 1}/`);
+    window.location.href = `/cities/${x+1}`;
 }
 
 $('.city-card').on('click', (event) => {
