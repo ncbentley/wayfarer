@@ -72,14 +72,19 @@ def city_index(request, city_id):
 
 def city_index_by_name(request, city_name):
     cities = City.objects.all()
-    context = {}
     for city in cities:
         if city.name.lower().replace(' ', '') == city_name:
             city_id = city.id
-            context['posts'] = Post.objects.all().filter(city=city.id)
+            posts = Post.objects.all().filter(city=city.id)
             break
-    context['city'] = city
-    context['form'] = NewPostForm()
+    paginator = Paginator(posts, 10)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'city': city,
+        'form': NewPostForm(),
+        'page_obj': page_obj
+    }
     return render(request, 'cities/index.html', context)
 
 def post_by_city_name(request, city_name, post_id):

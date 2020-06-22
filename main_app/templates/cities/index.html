@@ -48,7 +48,7 @@
                         {%endif%}
                     </div>
                     <div class="overflow-auto h-50">
-                        {% for post in posts %}
+                        {% for post in page_obj %}
                         <a href="{% url 'post' post.city.id post.id %}" class="post">
                             <div class="mt-2 mb-2">
                                 <div class="post-card my-auto card shadow d-flex flex-row m-2 pt-2">
@@ -61,6 +61,21 @@
                             </div>
                         </a>
                         {% endfor %}
+                        <div class="pagination">
+                            <span class="step-links">
+                                {% if page_obj.has_previous %}
+                                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                {% endif %}
+
+                                <span class="current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                </span>
+
+                                {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                {% endif %}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
