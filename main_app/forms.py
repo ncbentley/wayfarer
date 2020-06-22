@@ -1,7 +1,7 @@
 from django import forms
 from django.db import models
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Post, City, Image
+from .models import CustomUser, Post, City
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -25,3 +25,7 @@ class EditPostForm(forms.ModelForm):
         model = Post
         fields = ('title', 'content')
 
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ('image',)

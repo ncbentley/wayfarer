@@ -12,18 +12,23 @@
                     <div class="col-md-4 d-flex justify-content-center text-center my-auto">
                         <div id="profile" class="card shadow p-3 mb-5 bg-white rounded">
                             <div class="card-body">
-                                <img class="profile-pic rounded-circle" src="{% static 'images/avatar.jpg'%}"
-                                    alt="Profile Picture">
+                                <button type="button" class="edit" data-toggle="modal" data-target="#imageModal">
+                                    <!-- This got the image to happen. It's hella uggo, we know. -->
+                                    <img class="profile-pic rounded-circle" src="{% static '' %}{{user.image}}"
+                                        alt="Profile Picture">
+                                </button>
                                 <h4>{{view_user.full_name}}</h4>
                                 <p>Current City: {{view_user.current_city}}</p>
                                 <p>Date Joined: {{view_user.date_joined}} </p>
                                 <div class="contributed">
                                     <h5>Contributed To:</h5>
                                     {% if cities.sanfrancisco %}
-                                    <p class="sanfrancisco">San Francisco <span class="badge badge-dark">{{cities.sanfrancisco}}</span></p>
+                                    <p class="sanfrancisco">San Francisco <span
+                                            class="badge badge-dark">{{cities.sanfrancisco}}</span></p>
                                     {% endif %}
                                     {% if cities.seattle %}
-                                    <p class="seattle">Seattle <span class="badge badge-dark">{{cities.seattle}}</span></p>
+                                    <p class="seattle">Seattle <span class="badge badge-dark">{{cities.seattle}}</span>
+                                    </p>
                                     {% endif %}
                                     {% if cities.london %}
                                     <p class="london">London <span class="badge badge-dark">{{cities.london}}</span></p>
@@ -114,6 +119,29 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Image Modal -->
+            <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imageModalLabel">Add Profile Picture</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'profile' %}" enctype="multipart/form-data" method="POST">
+                                {% csrf_token %}
+                                {{ image_form|crispy }}
+                                <div class="text-center form-sm mt-2">
+                                    <button class="btn btn-info">Add Profile Picture</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
