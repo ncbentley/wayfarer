@@ -8,7 +8,7 @@ body {
 }
 
 main {
-    height: 94vh;
+    height: 92vh;
     margin: 0px;
 }
 
@@ -163,8 +163,13 @@ background: white;
 }
 
 a.profile-card {
+    transition-duration: 0.3s;
     text-decoration: none;
     color: whitesmoke;
+}
+
+a.profile-card div img {
+    transition-duration: 0.3s;
 }
 
 a.profile-card:hover div img{
@@ -283,11 +288,6 @@ a.post:hover {
     background-color: var(--primary);
 }
 
-a.profile-card {
-    text-decoration: none;
-    color: var(--primary);
-}
-
 .search {
     background-color: var(--light-teal);
     color: var(--cyan);
@@ -338,7 +338,9 @@ border-radius: 10px;
 ::-webkit-scrollbar-thumb {
     background: gray; 
     border-radius: 10px;
-    h1.wayfarer {
+}
+
+h1.wayfarer {
     color: var(--primary);
 }
 

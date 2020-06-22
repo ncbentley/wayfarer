@@ -83,7 +83,8 @@ def city_index_by_name(request, city_name):
     context = {
         'city': city,
         'form': NewPostForm(),
-        'page_obj': page_obj
+        'page_obj': page_obj,
+        'city_index': True
     }
     return render(request, 'cities/index.html', context)
 
