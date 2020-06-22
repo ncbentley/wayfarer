@@ -9,7 +9,7 @@
             <div class="row w-100 h-100 mt-4">
                 <!-- Cities List -->
                 <div class="col-4 h-100 d-flex justify-content-center flex-column city-container mx-auto card shadow rounded">
-                    <h2 class="ml-3 mt-2">Cities</h2>
+                    <h2 class="city-title ml-3 mt-2">Cities</h2>
                     <div class="city-card my-auto card shadow {% if city == 1 %}active{%endif%}">
                         <img src="{% static 'images/san-francisco.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
                         <h3 class="city ml-2">San Francisco</h3>
@@ -82,7 +82,7 @@
                         </button>
                         {%endif%}
                     </div>
-                    <div class="posts overflow-auto mb-0">
+                    <div class="overflow-auto h-50">
                         {% for post in seattle %}
                         <a href="{% url 'post' post.city.id post.id %}" class="post">
                             <div class="post-card my-auto card shadow d-flex flex-row m-2">
@@ -115,18 +115,20 @@
                         </button>
                         {%endif%}
                     </div>
-                    {% for post in london %}
-                    <a href="{% url 'post' post.city.id post.id %}" class="post">
-                        <div class="post-card my-auto card shadow d-flex flex-row m-2">
-                            <!-- Author image -->
-                            <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
-                            <div class="titles">
-                                <h3 class="post-title ml-2">{{post.title}}</h3>
-                                
+                    <div class="overflow-auto h-50">
+                        {% for post in london %}
+                        <a href="{% url 'post' post.city.id post.id %}" class="post">
+                            <div class="post-card my-auto card shadow d-flex flex-row m-2">
+                                <!-- Author image -->
+                                <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
+                                <div class="titles">
+                                    <h3 class="post-title ml-2">{{post.title}}</h3>
+                                    
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    {% endfor %}
+                        </a>
+                        {% endfor %}
+                    </div>
                 </div>
                 <!-- Sydney -->
                 <div class="col-7 h-100 mx-auto city-detail {% if city != 4 %}hidden{%endif%} card shadow rounded" style="color: var(--primary)">
@@ -147,18 +149,20 @@
                         </button>
                         {%endif%}
                     </div>
-                    {% for post in sydney %}
-                    <a href="{% url 'post' post.city.id post.id %}" class="post">
-                        <div class="post-card my-auto card shadow d-flex flex-row m-2">
-                            <!-- Author image -->
-                            <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
-                            <div class="titles">
-                                <h3 class="post-title ml-2 ">{{post.title}}</h3>
-                                
+                    <div class="overflow-auto h-50">
+                        {% for post in sydney %}
+                        <a href="{% url 'post' post.city.id post.id %}" class="post">
+                            <div class="post-card my-auto card shadow d-flex flex-row m-2">
+                                <!-- Author image -->
+                                <img src="{% static 'images/avatar.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
+                                <div class="titles">
+                                    <h3 class="post-title ml-2 ">{{post.title}}</h3>
+                                    
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    {% endfor %}
+                        </a>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

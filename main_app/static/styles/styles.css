@@ -12,7 +12,6 @@ main {
     margin: 0px;
 }
 
-
 .brand-logo {
     margin-left: 5px;
 }
@@ -157,6 +156,7 @@ div.col-1 {
 background: white;
     background: linear-gradient(180deg, rgba(139,222,255,1)85%, rgba(38,70,111,1) 15%);
     color: rgb(38,70,111);
+    transition-duration: 0.3s;
 }
 #profile-post:hover {
     color: var(--purple);
@@ -173,6 +173,10 @@ a.profile-card:hover div img{
 
 a.profile-card:hover{
     color: var(--purple);
+}
+
+.posts-title {
+    color: var(--primary);
 }
 
 #post-card{
@@ -207,6 +211,10 @@ a.profile-card:hover{
     object-fit: cover;
 }
 
+.city-title {
+    color: var(--cyan);
+}
+
 .city-preview {
     height: 80px;
     width: 100px;
@@ -231,16 +239,17 @@ a.profile-card:hover{
 
 .city-card:hover {
     cursor: pointer;
-    background-color: var(--purple);
+    background-color: var(--teal);
+    color: var(--primary);
 }
 
 .city-card.active {
-    background-color: var(--primary);
-    color: white;
+    background-color: var(--cyan);
+    color: var(--primary);
 }
 
 .city-container {
-    background-color: var(--cyan);
+    background-color: var(--primary);
     color: var(--primary);
 }
 
@@ -279,6 +288,17 @@ a.profile-card {
     color: var(--primary);
 }
 
+.search {
+    background-color: var(--light-teal);
+    color: var(--cyan);
+    border: none;
+    border-radius: 5px;
+}
+
+input.search::placeholder {
+    color: var(--cyan);
+}
+
 button.edit {
     text-decoration: none;
     border: none;
@@ -296,7 +316,7 @@ button.add-post {
     text-decoration: none;
     border: none;
     background-color: transparent;
-    color: var(--primary);
+    color: var(--purple);
     transition-duration: 0.3s;
 }
 
@@ -318,7 +338,7 @@ border-radius: 10px;
 ::-webkit-scrollbar-thumb {
     background: gray; 
     border-radius: 10px;
-h1.wayfarer {
+    h1.wayfarer {
     color: var(--primary);
 }
 
