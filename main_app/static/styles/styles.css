@@ -167,6 +167,10 @@ a.profile-card {
     color: whitesmoke;
 }
 
+a.profile-card:hover div img{
+    border-color: whitesmoke;
+}
+
 a.profile-card:hover{
     color: var(--purple);
 }
