@@ -11,6 +11,7 @@ const executeCityClick = (div) => {
     $($('.city-detail')[x]).removeClass('hidden');
     $('.city-card').removeClass('active');
     $(div).addClass('active');
+    window.history.replaceState({}, 'Wayfarer', `/cities/${x + 1}/`);
 }
 
 $('.city-card').on('click', (event) => {
