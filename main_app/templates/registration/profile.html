@@ -17,6 +17,22 @@
                                 <h4>{{view_user.full_name}}</h4>
                                 <p>Current City: {{view_user.current_city}}</p>
                                 <p>Date Joined: {{view_user.date_joined}} </p>
+                                <div class="contributed">
+                                    <h5>Contributed To:</h5>
+                                    {% if cities.sanfrancisco %}
+                                    <p class="sanfrancisco">San Francisco <span class="badge badge-dark">{{cities.sanfrancisco}}</span></p>
+                                    {% endif %}
+                                    {% if cities.seattle %}
+                                    <p class="seattle">Seattle <span class="badge badge-dark">{{cities.seattle}}</span></p>
+                                    {% endif %}
+                                    {% if cities.london %}
+                                    <p class="london">London <span class="badge badge-dark">{{cities.london}}</span></p>
+                                    {% endif %}
+                                    {% if cities.sydney %}
+                                    <p class="sydney">Sydney <span class="badge badge-dark">{{cities.sydney}}</span></p>
+                                    {% endif %}
+
+                                </div>
                             </div>
                             <div class="card-body">
                                 {% if user.id == view_user.id %}
@@ -37,7 +53,7 @@
 
                     <div class="col-md-5">
                         <h2 class="posts-title mb-4">My Posts</h2>
-                        <div class="overflow-auto p-2" style="max-height: 350px; width: 500px;">
+                        <div class="overflow-auto p-2" style="max-height: 450px; width: 500px;">
                             {%for post in posts%}
                             <a class="text-decoration-none post-link" href="{% url 'post' post.city.id post.id %}">
                                 <div id="profile-post" class="card shadow m-2 bg-white rounded">
