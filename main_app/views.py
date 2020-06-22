@@ -108,3 +108,6 @@ def delete_post(request, post_id):
     post.delete()
     return redirect(f'/cities/{post.city.id}')
     
+# profile playground
+def profile2(request):
+    return render(request, 'registration/profile2.html')
