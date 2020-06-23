@@ -42,7 +42,7 @@
                         <h3>{% if city.name == 'San Francisco' or city.name == 'Seattle'%}United States of
                             America{% elif city.name == 'London' %}United Kingdom{% else %}Australia{%endif%}</h3>
                     </div>
-                    <img src="{% static 'images/san-francisco.jpg' %}" class="city-img mx-auto">
+                    <img src="{% if city.name == 'San Francisco'%}{% static 'images/san-francisco.jpg'%}{%elif city.name == 'Seattle'%}{% static 'images/seattle.jpg'%}{% elif city.name == 'London' %}{% static 'images/london.jpg'%}{% else %}{% static 'images/sydney.jpg'%}{%endif%}" class="city-img mx-auto">
                 </div>
                 
                 <div class="row ml-2 mt-lg-5 pt-lg-5">
