@@ -70,8 +70,9 @@
                                 <!-- Author image -->
                                 <img src="{% static '' %}{{post.user.image}}" alt=""
                                     class="p-0 my-2 ml-3 img-thumbnail avatar">
-                                <div class="titles overflow-scroll" style="text-align: center;">
-                                    <h3 class="post-title ml-2">{{post.title|title}}</h3>
+                                <div class="ml-3 titles overflow-scroll">
+                                    <h3 class="post-title">{{post.title|title}}</h3>
+                                    <p class="relative-time">{{post.time|timesince}} ago</p>
                                 </div>
                             </div>
                         </div>
