@@ -4,109 +4,129 @@
 
 
 {% block content %}
-<div class="w-80 h-75 d-flex flex-row justify-content-center">
-    <div class="row w-100 h-100 mt-5">
-        <!-- Cities List -->
-        <div class="col-4 h-100 d-flex justify-content-center flex-column city-container mx-auto card shadow rounded">
-            <h2 class="city-title ml-3 mt-2">Cities</h2>
-            <div class="city-card my-auto card shadow {% if city.id == 1 %}active{%endif%}">
-                <img src="{% static 'images/san-francisco.jpg' %}" alt=""
-                    class="p-0 my-2 ml-3 img-thumbnail city-preview">
-                <h3 class="city ml-2">San Francisco</h3>
-            </div>
-            <div class="city-card my-auto card shadow {% if city.id == 2 %}active{%endif%}">
-                <img src="{% static 'images/seattle.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
-                <h3 class="city ml-2">Seattle</h3>
-            </div>
-            <div class="city-card my-auto card shadow {% if city.id == 3 %}active{%endif%}">
-                <img src="{% static 'images/london.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
-                <h3 class="city ml-2">London</h3>
-            </div>
-            <div class="city-card my-auto card shadow {% if city.id == 4 %}active{%endif%}">
-                <img src="{% static 'images/sydney.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
-                <h3 class="city ml-2">Sydney</h3>
-            </div>
-        </div>
-        <!-- City Detail -->
-        <div class="col-7 h-100 mx-auto city-detail card shadow rounded" style="color: var(--primary)">
-            <div class="row d-flex flex-row m-2 pb-lg-5">
-                <div class="titles">
-                    <h1>{{city.name}}</h1>
-                    <h3>{% if city.name == 'San Francisco' or city.name == 'Seattle'%}United States of
-                        America{% elif city.name == 'London' %}United Kingdom{% else %}Australia{%endif%}</h3>
+    <div class="w-80 h-75 d-flex flex-row justify-content-center">
+        <div class="row w-100 h-100 mt-5">
+            
+            <!-- cities list -->
+            <div class="col-4 h-100 d-flex justify-content-center flex-column city-container mx-auto card shadow rounded">
+                <h2 class="city-title ml-3 mt-2">Cities</h2>
+                <!-- SF -->
+                <div class="city-card my-auto card shadow {% if city.id == 1 %}active{%endif%}">
+                    <img src="{% static 'images/san-francisco.jpg' %}" alt=""
+                        class="p-0 my-2 ml-3 img-thumbnail city-preview">
+                    <h3 class="city ml-2">San Francisco</h3>
                 </div>
-                <img src="{% static 'images/san-francisco.jpg' %}" class="city-img mx-auto">
+                <!-- Seattle -->
+                <div class="city-card my-auto card shadow {% if city.id == 2 %}active{%endif%}">
+                    <img src="{% static 'images/seattle.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
+                    <h3 class="city ml-2">Seattle</h3>
+                </div>
+                <!-- London -->
+                <div class="city-card my-auto card shadow {% if city.id == 3 %}active{%endif%}">
+                    <img src="{% static 'images/london.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
+                    <h3 class="city ml-2">London</h3>
+                </div>
+                <!-- Sydney -->
+                <div class="city-card my-auto card shadow {% if city.id == 4 %}active{%endif%}">
+                    <img src="{% static 'images/sydney.jpg' %}" alt="" class="p-0 my-2 ml-3 img-thumbnail city-preview">
+                    <h3 class="city ml-2">Sydney</h3>
+                </div>
             </div>
-            <div class="row ml-2 mt-lg-5 pt-lg-5">
-                <h2>Posts</h2>
-                {% if user.is_authenticated %}
-                <button class="add-post float-right" data-toggle="modal" data-target="#exampleModal">
-                    <svg class="bi bi-plus-circle-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16"
-                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z" />
-                    </svg>
-                </button>
-                {%endif%}
-            </div>
-            <div class="overflow-auto h-50">
-                {% for post in page_obj %}
-                <a href="{% url 'post' post.city.id post.id %}" class="post">
-                    <div class="mt-2 mb-2">
-                        <div class="post-card my-auto card shadow d-flex flex-row m-2 pt-2">
-                            <!-- Author image -->
-                            <img src="{% static '' %}{{post.user.image}}" alt=""
-                                class="p-0 my-2 ml-3 img-thumbnail avatar">
-                            <div class="titles overflow-scroll" style="text-align: center;">
-                                <h3 class="post-title ml-2">{{post.title}}</h3>
+
+            <!-- city detail -->
+            <div class="col-7 h-100 mx-auto city-detail card shadow rounded" style="color: var(--primary)">
+                <!-- city info -->
+                <div class="row d-flex flex-row m-2 pb-lg-5">
+                    <div class="titles">
+                        <h1>{{city.name}}</h1>
+                        <h3>{% if city.name == 'San Francisco' or city.name == 'Seattle'%}United States of
+                            America{% elif city.name == 'London' %}United Kingdom{% else %}Australia{%endif%}</h3>
+                    </div>
+                    <img src="{% static 'images/san-francisco.jpg' %}" class="city-img mx-auto">
+                </div>
+                
+                <div class="row ml-2 mt-lg-5 pt-lg-5">
+                    
+                    <h2>Posts</h2>
+
+                    <!-- add post -->
+                    {% if user.is_authenticated %}
+                    <button class="add-post float-right" data-toggle="modal" data-target="#exampleModal">
+                        <svg class="bi bi-plus-circle-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16"
+                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z" />
+                        </svg>
+                    </button>
+                    {%endif%}
+                </div>
+
+                <!-- city post preview -->
+                <div class="overflow-auto h-50">
+                    {% for post in page_obj %}
+                    <a href="{% url 'post' post.city.id post.id %}" class="post">
+                        <div class="mt-2 mb-2">
+                            <div class="post-card my-auto card shadow d-flex flex-row m-2 pt-2">
+                                <!-- Author image -->
+                                <img src="{% static '' %}{{post.user.image}}" alt=""
+                                    class="p-0 my-2 ml-3 img-thumbnail avatar">
+                                <div class="titles overflow-scroll" style="text-align: center;">
+                                    <h3 class="post-title ml-2">{{post.title|title}}</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-                {% endfor %}
-                <div class="pagination">
-                    <span class="step-links">
-                        {% if page_obj.has_previous %}
-                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                        {% endif %}
+                    </a>
+                    {% empty %}
+                        <p>No Posts.</p>
+                    {% endfor %}
 
-                        <span class="current">
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    <!-- pagination logic -->
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            {% endif %}
+
+                            <span class="current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                            </span>
+
+                            {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            {% endif %}
                         </span>
+                    </div>
 
-                        {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">next</a>
-                        {% endif %}
-                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- create new post -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create a New Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'create_post' %}" method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="text-center form-sm mt-2">
+                            <button class="btn btn-info">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create a New Post</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{% url 'create_post' %}" method="POST">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <div class="text-center form-sm mt-2">
-                        <button class="btn btn-info">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="{% static 'scripts/cities.js' %}"></script>
+    <script src="{% static 'scripts/cities.js' %}"></script>
 
 {% endblock %}

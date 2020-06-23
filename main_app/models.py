@@ -22,7 +22,6 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
-
 class Post(models.Model):
     time = models.DateTimeField(default=datetime.now)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
