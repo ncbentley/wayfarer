@@ -228,7 +228,7 @@ button.edit:hover {
 }
 
 #contributions {
-    background-color: var(--cyan);
+    background-color: white;
     margin-bottom: 20px;
 }
 
@@ -247,8 +247,8 @@ span.badge {
 }
 
 #post-card{
-    background-color: rgb(139,222,255);
-    color: rgb(38,70,111);
+    background-color: white;;
+    color: var(--primary);
 }
 
 .btn-edit {
@@ -419,4 +419,41 @@ h1.wayfarer {
 .relative-time{
     font-size: .9em;
     color: gray
+}
+
+#comments-link {
+    font-size: 1.3em;
+    text-decoration: none;
+    color: var(--primary);
+    position: relative;
+    transition-duration: .3s;
+}
+
+#comments-link:hover {
+    transform: scale(1.1);
+    color: var(--purple);
+}
+
+.comment-number {
+    text-align: center;
+}
+
+.bi-chat {
+    position: absolute;
+    top: -1px;
+    left: 85px;
+}
+
+.comment-label {
+    font-size: .8em;
+}
+
+.profile-link {
+    color: gray;
+    text-decoration: none;
+}
+
+.profile-link:hover {
+    color: var(--purple);
+    text-decoration: none;
 }

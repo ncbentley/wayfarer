@@ -51,7 +51,8 @@ def profile(request):
                 cities[city] += 1
             else:
                 cities[city] = 1
-        context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city}), 'posts': posts, 'view_user': request.user, 'cities': cities, 'image_form':ImageForm()}
+        comments = Comment.objects.filter(user=request.user).count()
+        context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city}), 'posts': posts, 'view_user': request.user, 'cities': cities, 'image_form':ImageForm(), 'comments': comments}
         return render(request, 'registration/profile.html', context)
 
 # public profile route
@@ -60,7 +61,15 @@ def public_profile(request, user_name):
     if request.user == user:
         return redirect('/profile')
     posts = Post.objects.all().filter(user=user.id)
-    context = {'view_user': user, 'posts': posts}
+    cities = {}
+    for post in posts:
+        city = post.city.name.lower().replace(' ', '')
+        if city in cities.keys():
+            cities[city] += 1
+        else:
+            cities[city] = 1
+    comments = Comment.objects.filter(user=user).count()
+    context = {'view_user': user, 'posts': posts, 'cities': cities, 'comments': comments}
     return render(request, 'registration/profile.html', context)
 
 # signup/register route
@@ -119,7 +128,8 @@ def city_index_by_name(request, city_name):
 def post_by_city_name(request, city_name, post_id):
     post = Post.objects.get(id=post_id)
     edit_post = EditPostForm(instance=post)
-    context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg', 'edit_post':edit_post}
+    comments = Comment.objects.filter(post=post).count()
+    context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg', 'edit_post':edit_post, 'comments': comments}
     return render(request, 'cities/post.html', context)
 
 # redirects to pretty post URL

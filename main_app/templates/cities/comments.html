@@ -35,11 +35,11 @@
     {% for comment in comments%}
     <div id="comment-card" class="card shadow rounded">
         <div class="card-body">
-            <div class="post-card my-auto card shadow d-flex flex-row m-2 pt-2">
+            <div id="post-card" class="my-auto card shadow d-flex flex-row m-2 pt-2">
                 <!-- Author image -->
                 <img src="{% static '' %}{{comment.user.image}}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
                 <div class="ml-3 titles overflow-scroll">
-                    <span class="relative-time">{{comment.time|timesince}} ago</span>
+                    <span class="relative-time"><a href="{%url 'public_profile' comment.user.username%}" class="profile-link">{{comment.user}}</a> - {{comment.time|timesince}} ago</span>
                     <p class="post-title">{{comment.content}}</p>
                 </div>
             </div>
