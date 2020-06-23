@@ -415,3 +415,8 @@ h1.wayfarer {
     background-color: white;
     color: var(--primary);
 }
+
+.relative-time{
+    font-size: .9em;
+    color: gray
+}

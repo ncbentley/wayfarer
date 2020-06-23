@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load custom_tags %}
 
 {% block content %}
 
@@ -16,14 +17,36 @@
             <p id="shown" class="card-title shown hidden">{{post.content}}</p>
         </div>
     </div>
+    {% if user.is_authenticated %}
     <div id="new-comment-card" class="card shadow rounded">
         <div class="card-body">
-            <form action="">
+            <form action="{% url 'post_comments' post.city|lower|remove_spaces post.id %}" method="POST">
                 {% csrf_token %}
-                {{ comment_form|crispy }}
+                <h6>Add Comment</h6>
+                <textarea name="content" cols="40" rows="2" maxlength="1000" class="textarea form-control" required=""
+                    id="id_content"></textarea>
+                <button class="btn btn-info float-right mt-2">
+                    Add Comment
+                </button>
             </form>
         </div>
     </div>
+    {% endif %}
+    {% for comment in comments%}
+    <div id="comment-card" class="card shadow rounded">
+        <div class="card-body">
+            <div class="post-card my-auto card shadow d-flex flex-row m-2 pt-2">
+                <!-- Author image -->
+                <img src="{% static '' %}{{comment.user.image}}" alt="" class="p-0 my-2 ml-3 img-thumbnail avatar">
+                <div class="ml-3 titles overflow-scroll">
+                    <span class="relative-time">{{comment.time|timesince}} ago</span>
+                    <p class="post-title">{{comment.content}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
+
 
 {% endblock %}

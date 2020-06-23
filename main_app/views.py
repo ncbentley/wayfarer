@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 # forms
-from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm, EditPostForm, ImageForm, CommentForm
+from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm, EditPostForm, ImageForm
 
 # models
 from .models import City, Post, CustomUser, Comment
@@ -160,6 +160,10 @@ def delete_post(request, post_id):
 
 def post_comments(request, city_name, post_id):
     post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        comment = Comment(user=request.user, post=post, content=request.POST.get('content'))
+        comment.save()
+        return redirect(f'/cities/{city_name}/{post_id}/comments')
     comments = Comment.objects.all().filter(post=post)
-    context = {'post':post, 'comments':comments, 'comment_form':CommentForm() }
+    context = {'post':post, 'comments':comments }
     return render(request,'cities/comments.html', context)
