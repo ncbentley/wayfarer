@@ -1,3 +1,4 @@
+# imports
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
@@ -5,12 +6,14 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
+# forms
 from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm, EditPostForm, ImageForm
 
+# models
 from .models import City, Post, CustomUser
 
-# Create your views here.
 
+# home route
 def home(request):
     if request.method == 'POST':
         username_form = request.POST['username']
@@ -29,6 +32,7 @@ def home(request):
             return redirect('cities')
         return render(request, 'home.html')
 
+# profile route
 @login_required
 def profile(request):
     if request.method == 'POST':
@@ -50,6 +54,7 @@ def profile(request):
         context = {'edit_profile_form': EditProfileForm(initial={'full_name':request.user.full_name, 'current_city':request.user.current_city}), 'posts': posts, 'view_user': request.user, 'cities': cities, 'image_form':ImageForm()}
         return render(request, 'registration/profile.html', context)
 
+# public profile route
 def public_profile(request, user_name):
     user = CustomUser.objects.get(username=user_name)
     if request.user == user:
@@ -58,6 +63,7 @@ def public_profile(request, user_name):
     context = {'view_user': user, 'posts': posts}
     return render(request, 'registration/profile.html', context)
 
+# signup/register route
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -70,6 +76,7 @@ def signup(request):
     else:
         return redirect(request.META.get('HTTP_ORIGIN') + '?registration=fail')
 
+# edit profile route
 @login_required
 def edit_profile(request):
     user = request.user
@@ -80,13 +87,16 @@ def edit_profile(request):
         user.save()
     return redirect('profile')
 
+# city-home routes
 def cities(request):
     return redirect('/cities/1')
 
+# individual city by ID route (pretty URL)
 def city_index(request, city_id):
     city = City.objects.get(id=city_id)
     return redirect(f'/cities/{city.name.lower().replace(" ", "")}')
 
+# display city name route
 def city_index_by_name(request, city_name):
     cities = City.objects.all()
     for city in cities:
@@ -105,16 +115,19 @@ def city_index_by_name(request, city_name):
     }
     return render(request, 'cities/index.html', context)
 
+# edit post route (pretty post URL)
 def post_by_city_name(request, city_name, post_id):
     post = Post.objects.get(id=post_id)
     edit_post = EditPostForm(instance=post)
     context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg', 'edit_post':edit_post}
     return render(request, 'cities/post.html', context)
 
+# redirects to pretty post URL
 def post(request, city_id, post_id):
     city = City.objects.get(id=city_id)
     return redirect(f'/cities/{city.name.lower().replace(" ", "")}/{post_id}')
 
+# create new post route
 @login_required
 def create_post(request):
     form = NewPostForm(request.POST)
@@ -124,6 +137,7 @@ def create_post(request):
         post.save()
     return redirect(f'/cities/{post.city.id}')
 
+# edit post route 
 @login_required
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
@@ -135,6 +149,7 @@ def edit_post(request, post_id):
             edit_post.save()
             return redirect(f'/cities/{post.city.id}/{post.id}', post_id=post_id)
 
+# delete route
 @login_required
 def delete_post(request, post_id):
     post = Post.objects.get(id=post_id)
@@ -142,7 +157,3 @@ def delete_post(request, post_id):
         return redirect(f'/cities/{post.city.id}/{post.id}')
     post.delete()
     return redirect(f'/cities/{post.city.id}')
-    
-# profile playground
-def profile2(request):
-    return render(request, 'registration/profile2.html')

@@ -1,8 +1,4 @@
-*/:root{
-    --main-font: font-family: 'Roboto', sans-serif;
-    --small-font: font-family: 'Roboto Condensed', sans-serif;
-}
-
+/* Main */
 body {
     background-color: var(--light-teal);
 }
@@ -12,36 +8,9 @@ main {
     margin: 0px;
 }
 
+/* Header */
 .brand-logo {
     margin-left: 5px;
-}
-
-.carousel {
-    position: relative;
-    height: 450px;
-}
-
-.carousel-item img {
-    object-fit: cover;
-    height: 450px;
-    background-position: center center;
-    background-repeat: no-repeat;
-}
-
-.carousel-fixed-item {
-    margin: 0 10px 0 10px;
-    position: absolute;
-    top: 50%;
-    padding: 0;
-    margin: 0;
-}
-
-.button {
-    cursor: pointer;
-}
-
-.flip {
-    transform: rotate(180deg);
 }
 
 .wayfarer {
@@ -98,16 +67,6 @@ main {
     background-color: white;
 }
 
-div.col-1 {
-    color: var(--primary)
-}
-
-@media only screen and (max-width: 600px){
-    .icons {
-        display: none;
-    }
-}
-
 .navbar-toggler {
     color: var(--primary);
     transition-duration: 0.3s;
@@ -118,6 +77,46 @@ div.col-1 {
     background-color: var(--teal);
 }
 
+/* Home */
+.carousel {
+    position: relative;
+    height: 450px;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 450px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.carousel-fixed-item {
+    margin: 0 10px 0 10px;
+    position: absolute;
+    top: 50%;
+    padding: 0;
+    margin: 0;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.flip {
+    transform: rotate(180deg);
+}
+
+div.col-1 {
+    color: var(--primary)
+}
+
+@media only screen and (max-width: 600px){
+    .icons {
+        display: none;
+    }
+}
+
+/* Profile */
 .control {
     color: var(--primary);
     font-size: 2em;
@@ -142,6 +141,7 @@ div.col-1 {
     display: block;
     transition: .5s ease;
     backface-visibility: hidden;
+    background-color: white;
 }
 
 .image-container {
@@ -164,11 +164,12 @@ div.col-1 {
 }
 
 .image-container:hover .middle {
-opacity: 1;
+    opacity: 1;
+    cursor: pointer;
 }
 
 .text {
-    color: var(--primary);
+    color: var(--cyan);
     font-size: 20px;
     position: absolute;
     display: flex;
@@ -178,7 +179,6 @@ opacity: 1;
     height: 200px;
     width: 200px;
 }
-
 
 .profile-pic-sm {
     object-fit: cover;
@@ -201,7 +201,7 @@ background: white;
     transition-duration: 0.3s;
 }
 #profile-post:hover {
-    color: var(--purple);
+    color: var(--teal);
 }
 
 a.profile-card {
@@ -219,9 +219,29 @@ a.profile-card:hover div img{
 }
 
 a.profile-card:hover{
-    color: var(--purple);
+    color: var(--teal);
 }
 
+button.edit:hover {
+    cursor: pointer;
+    color: var(--teal);
+}
+
+#contributions {
+    background-color: var(--cyan);
+    margin-bottom: 20px;
+}
+
+.contrib {
+    color: var(--primary);
+}
+
+span.badge {
+    background-color: var(--primary);
+    color: var(--teal)
+}
+
+/* Cities Index */
 .posts-title {
     color: var(--primary);
 }
@@ -239,7 +259,7 @@ a.profile-card:hover{
 }
 
 .btn-edit:hover {
-    color: rgb(168,136,255);
+    color: var(--purple);
     border: none;
 }
 
@@ -342,6 +362,7 @@ a.post:hover {
     color: var(--cyan)
 }
 
+/* Post Show */
 input.search::placeholder {
     color: var(--cyan);
 }
@@ -352,11 +373,6 @@ button.edit {
     background-color: transparent;
     color: whitesmoke;
     transition-duration: 0.3s;
-}
-
-button.edit:hover {
-    cursor: pointer;
-    color: var(--purple);
 }
 
 button.add-post {

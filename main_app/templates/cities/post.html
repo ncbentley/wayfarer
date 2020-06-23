@@ -3,96 +3,103 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<img id="city-img" src="{% static 'images/' %}{{image}}" alt="">
-<div class="container">
-    <div class="row d-flex justify-content-around align-items-center w-100">
+    
+    <img id="city-img" src="{% static 'images/' %}{{image}}" alt="">
+    <div class="container">
+        <div class="row d-flex justify-content-around align-items-center w-100">
 
-        <!-- post content -->
-        <div class="col-md-7 my-auto py-5">
-            <div id="post-card" class="card shadow rounded">
-                <div class="card-body">
-                    <h5 class="card-title">{{ post.title }}</h5>
-                    <h6 class="card-title">{{ post.city }}</h6>
-                    <p class="card-title truncated"> {{ post.content|truncatechars:1000 }}
-                        {% if post.content|length > 1000 %}<a href="#shown" class="see-more">See More</a>{%endif%}</p>
-                    <p id="shown" class="card-title shown hidden">{{post.content}}</p>
-                </div>
-                <div class="card-body">
-                    {% if post.user.id == user.id %}
-                    <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#exampleModal">
-                        Edit Post
-                    </button>
-                    <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#deleteModal">
-                        Delete Post
-                    </button>
-                    {%endif%}
-                </div>
-            </div>
-        </div>
+            <!-- post content -->
+            <div class="col-md-7 my-auto py-5">
+                <div id="post-card" class="card shadow rounded">
 
-        <!-- user info card -->
-        <div class="col-md-4 d-flex justify-content-center text-center my-auto py-5">
-            <div id="profile" class="card shadow bg-white rounded">
-                <a class="profile-card" href="{% url 'public_profile' post.user.username %}">
                     <div class="card-body">
-                        <img class="profile-pic-sm rounded-circle" width="100px" height="100px"
-                            src="{% static '' %}{{post.user.image}}" alt="Profile Picture">
-                        <!-- TODO Change to user.full_name once create post form exists -->
-                        <h4>Published by: {{ post.user.full_name }}</h4>
-                        <p class='mt-sm-2'>Current City: {{ post.user.current_city }}</p>
+                        <h5 class="card-title">{{ post.title|title }}</h5>
+                        <h6 class="card-title">{{ post.city }}</h6>
+                        <p class="card-title truncated"> {{ post.content|truncatechars:1000 }}
+                            {% if post.content|length > 1000 %}<a href="#shown" class="see-more">See More</a>{%endif%}</p>
+                        <p id="shown" class="card-title shown hidden">{{post.content}}</p>
                     </div>
-                </a>
+
+                    <!-- button visibility logic -->
+                    <div class="card-body">
+                        {% if post.user.id == user.id %}
+                        <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#exampleModal">
+                            Edit Post
+                        </button>
+                        <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#deleteModal">
+                            Delete Post
+                        </button>
+                        {%endif%}
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- user info card -->
+            <div class="col-md-4 d-flex justify-content-center text-center my-auto py-5">
+                <div id="profile" class="card shadow bg-white rounded">
+                    <a class="profile-card" href="{% url 'public_profile' post.user.username %}">
+                        <div class="card-body">
+                            <img class="profile-pic-sm rounded-circle" width="100px" height="100px"
+                                src="{% static '' %}{{post.user.image}}" alt="Profile Picture">
+                            <!-- TODO Change to user.full_name once create post form exists -->
+                            <h4>Published by: {{ post.user.full_name }}</h4>
+                            <p class='mt-sm-2'>Current City: {{ post.user.current_city }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- edit post form -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'edit_post' post.id %}" method="POST">
+                        {% csrf_token %}
+                        {{ edit_post|crispy }}
+                        <div class="text-center form-sm mt-2">
+                            <button class="btn btn-info">Edit Post</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{% url 'edit_post' post.id %}" method="POST">
-                    {% csrf_token %}
-                    {{ edit_post|crispy }}
-                    <div class="text-center form-sm mt-2">
-                        <button class="btn btn-info">Edit Post</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete? Are you sure?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{% url 'delete_post' post.id %}" method="POST">
-                    {% csrf_token %}
-                    <div class="text-center form-sm mt-2">
-                        <button class="btn btn-danger">Delete</button>
-                    </div>
-                </form>
+    <!-- delete -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete? Are you sure?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'delete_post' post.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="text-center form-sm mt-2">
+                            <button class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="{% static 'scripts/post.js' %}"></script>
-
+    <script src="{% static 'scripts/post.js' %}"></script>
 
 {% endblock %}
