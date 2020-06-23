@@ -1,0 +1,459 @@
+/* Main */
+body {
+    background-color: var(--light-teal);
+}
+
+main {
+    height: 92vh;
+    margin: 0px;
+}
+
+/* Header */
+.brand-logo {
+    margin-left: 5px;
+}
+
+.wayfarer {
+    text-align: center;
+}
+
+.btn-info {
+    color: var(--primary);
+    background-color: var(--cyan);
+    transition-duration: 0.3s;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: var(--teal);
+    color: var(--primary);
+    border: none;
+}
+
+.navbar {
+    background-color: var(--primary);
+}
+
+.nav-link, .navbar-brand {
+    color: var(--cyan);
+    transition-duration: 0.3s;
+}
+
+.nav-link:hover, .navbar-brand:hover {
+    color: var(--teal);
+}
+
+.lrmodal {
+    text-align: center;
+    padding: 0;
+}
+
+.lrlink {
+    color: darkgray;
+    background-color: gray;
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    border: none!important;
+    transition-duration: 0.3s;
+}
+
+.lrlink:hover {
+    color: var(--primary);
+    background-color: var(--teal);
+}
+
+.lrlink.active {
+    color: var(--primary);
+    background-color: white;
+}
+
+.navbar-toggler {
+    color: var(--primary);
+    transition-duration: 0.3s;
+}
+
+.navbar-toggler:hover {
+    color: var(--purple);
+    background-color: var(--teal);
+}
+
+/* Home */
+.carousel {
+    position: relative;
+    height: 450px;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 450px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.carousel-fixed-item {
+    margin: 0 10px 0 10px;
+    position: absolute;
+    top: 50%;
+    padding: 0;
+    margin: 0;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.flip {
+    transform: rotate(180deg);
+}
+
+div.col-1 {
+    color: var(--primary)
+}
+
+@media only screen and (max-width: 600px){
+    .icons {
+        display: none;
+    }
+}
+
+/* Profile */
+.control {
+    color: var(--primary);
+    font-size: 2em;
+    transition-duration: .3s;
+}
+
+.control:hover {
+    color: var(--purple);
+}
+
+.hidden {
+    display: none;
+}
+
+.profile-pic {
+    object-fit: cover;
+    height: 200px;
+    width: 200px;
+    margin-bottom: 30px;
+    border: 5px solid rgb(168,136,255);
+    opacity: 1;
+    display: block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    background-color: white;
+}
+
+.image-container {
+    position: relative;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    display: inline;
+    top: 100px;
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: #00000040;
+    border-radius: 50%;
+}
+
+.image-container:hover .middle {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.text {
+    color: var(--cyan);
+    font-size: 20px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 200px;
+    width: 200px;
+}
+
+.profile-pic-sm {
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    margin-bottom: 30px;
+    border: 5px solid rgb(168,136,255);
+}
+
+#profile {
+    background: white;
+    background: linear-gradient(180deg, rgba(139,222,255,1) 25%, rgba(38,70,111,1) 25%);
+    color: whitesmoke;
+}
+
+#profile-post {
+background: white;
+    background: linear-gradient(180deg, rgba(139,222,255,1)85%, rgba(38,70,111,1) 15%);
+    color: rgb(38,70,111);
+    transition-duration: 0.3s;
+}
+#profile-post:hover {
+    color: var(--teal);
+}
+
+a.profile-card {
+    transition-duration: 0.3s;
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+a.profile-card div img {
+    transition-duration: 0.3s;
+}
+
+a.profile-card:hover div img{
+    border-color: whitesmoke;
+}
+
+a.profile-card:hover{
+    color: var(--teal);
+}
+
+button.edit:hover {
+    cursor: pointer;
+    color: var(--teal);
+}
+
+#contributions {
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.contrib {
+    color: var(--primary);
+}
+
+span.badge {
+    background-color: var(--primary);
+    color: var(--teal)
+}
+
+/* Cities Index */
+.posts-title {
+    color: var(--primary);
+}
+
+#post-card{
+    background-color: white;;
+    color: var(--primary);
+}
+
+.btn-edit {
+    color: whitesmoke;
+    background-color: var(--primary);
+    transition-duration: 0.3s;
+    border: none;
+}
+
+.btn-edit:hover {
+    color: var(--purple);
+    border: none;
+}
+
+.post-link {
+    color: var(--primary);
+    transition-duration: 0.3s;
+}
+
+.post-link:hover {
+    color: var(--purple);
+}
+
+#city-img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.city-title {
+    color: var(--cyan);
+}
+
+.city-preview {
+    height: 80px;
+    width: 100px;
+    object-fit: cover;
+}
+
+.city-img {
+    height: 200px;
+    width: 300px;
+    object-fit: cover;
+    position: absolute;
+    right: 10px;
+}
+
+.city-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 1em;
+    transition-duration: 0.3s;
+}
+
+.city-card:hover {
+    cursor: pointer;
+    background-color: var(--teal);
+    color: var(--primary);
+}
+
+.city-card.active {
+    background-color: var(--cyan);
+    color: var(--primary);
+}
+
+.city-container {
+    background-color: var(--primary);
+    color: var(--primary);
+}
+
+.avatar {
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+}
+
+.city-detail row {
+    position: relative;
+}
+
+.posts {
+    max-height: 400px;
+}
+
+a.post {
+    text-decoration: none;
+    color: var(--primary);
+}
+
+a.post:hover {
+    color: var(--cyan);
+}
+
+.post-card {
+    transition-duration: 0.3s;
+}
+
+.post-card:hover {
+    background-color: var(--primary);
+}
+
+.search {
+    background-color: var(--light-teal);
+    color: var(--cyan);
+    border: none;
+    border-radius: 5px;
+}
+
+.city-title {
+    color: var(--cyan)
+}
+
+/* Post Show */
+input.search::placeholder {
+    color: var(--cyan);
+}
+
+button.edit {
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    color: whitesmoke;
+    transition-duration: 0.3s;
+}
+
+button.add-post {
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    color: var(--purple);
+    transition-duration: 0.3s;
+}
+
+button.add-post:hover {
+    cursor: pointer;
+    color: var(--cyan);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px grey; 
+border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: gray; 
+    border-radius: 10px;
+}
+
+h1.wayfarer {
+    color: var(--primary);
+}
+
+.col.card.m-3.shadow {
+    color: var(--primary);
+}
+
+.badge-dark {
+    background-color: white;
+    color: var(--primary);
+}
+
+.relative-time{
+    font-size: .9em;
+    color: gray
+}
+
+#comments-link {
+    font-size: 1.3em;
+    text-decoration: none;
+    color: var(--primary);
+    position: relative;
+    transition-duration: .3s;
+}
+
+#comments-link:hover {
+    transform: scale(1.1);
+    color: var(--purple);
+}
+
+.comment-number {
+    text-align: center;
+}
+
+.bi-chat {
+    position: absolute;
+    top: -1px;
+    left: 85px;
+}
+
+.comment-label {
+    font-size: .8em;
+}
+
+.profile-link {
+    color: gray;
+    text-decoration: none;
+}
+
+.profile-link:hover {
+    color: var(--purple);
+    text-decoration: none;
+}

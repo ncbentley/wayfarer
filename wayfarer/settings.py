@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main_app.context_processors.login_form',
+                'main_app.context_processors.registration_form',
             ],
         },
     },
@@ -119,3 +122,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'main_app.CustomUser'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_URL = '/?login=true'
+MEDIA_URL = '/main_app/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'main_app/static/')

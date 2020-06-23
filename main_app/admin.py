@@ -1,3 +1,16 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
 
-# Register your models here.
+from .forms import CustomUserCreationForm
+from .models import CustomUser, City, Post, Comment
+
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    model = CustomUser
+    list_display = ['email', 'username', 'current_city',]
+
+admin.site.register(City)
+admin.site.register(Post)
+admin.site.register(Comment)
+admin.site.register(CustomUser, CustomUserAdmin,)
