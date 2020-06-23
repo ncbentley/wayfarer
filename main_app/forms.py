@@ -1,7 +1,7 @@
 from django import forms
 from django.db import models
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Post, City
+from .models import CustomUser, Post, City, Comment
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -29,3 +29,8 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('image',)
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('content',)

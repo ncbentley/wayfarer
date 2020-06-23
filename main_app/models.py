@@ -32,3 +32,12 @@ class Post(models.Model):
     class Meta:
         ordering = ['-time']
 
+class Comment(models.Model):
+    time = models.DateTimeField(default=datetime.now)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    content = models.TextField(max_length=1000)
+
+    class Meta:
+        ordering = ['-time']
+

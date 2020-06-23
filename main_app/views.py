@@ -7,10 +7,10 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 # forms
-from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm, EditPostForm, ImageForm
+from .forms import CustomUserCreationForm, EditProfileForm, NewPostForm, EditPostForm, ImageForm, CommentForm
 
 # models
-from .models import City, Post, CustomUser
+from .models import City, Post, CustomUser, Comment
 
 
 # home route
@@ -157,3 +157,9 @@ def delete_post(request, post_id):
         return redirect(f'/cities/{post.city.id}/{post.id}')
     post.delete()
     return redirect(f'/cities/{post.city.id}')
+
+def post_comments(request, city_name, post_id):
+    post = Post.objects.get(id=post_id)
+    comments = Comment.objects.all().filter(post=post)
+    context = {'post':post, 'comments':comments, 'comment_form':CommentForm() }
+    return render(request,'cities/comments.html', context)
