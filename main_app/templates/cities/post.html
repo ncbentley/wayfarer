@@ -43,8 +43,9 @@
                             <img class="profile-pic-sm rounded-circle" width="100px" height="100px"
                                 src="{% static '' %}{{post.user.image}}" alt="Profile Picture">
                             <!-- TODO Change to user.full_name once create post form exists -->
-                            <h4>Published by: {{ post.user.full_name }}</h4>
-                            <p class='mt-sm-2'>Current City: {{ post.user.current_city }}</p>
+                            <h3>Author: {{ post.user.full_name }}</h3>
+                            <h5 class='mt-sm-2'>Current City: {{ post.user.current_city }}</h5>
+                            <p class="mt-sm-2">Published: {{post.time|timesince}} ago</p>
                         </div>
                     </a>
                 </div>
