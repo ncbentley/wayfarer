@@ -47,9 +47,8 @@
         <!-- nav logic -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
-              {% if city_index %}
+              
                 <input class="search mr-3" type="text" placeholder="Search..">
-              {% endif %}
               {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'profile'%}">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>

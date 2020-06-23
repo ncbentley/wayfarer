@@ -13,7 +13,7 @@
                 <div id="post-card" class="card shadow rounded">
 
                     <div class="card-body">
-                        <h5 class="card-title">{{ post.title }}</h5>
+                        <h5 class="card-title">{{ post.title|title }}</h5>
                         <h6 class="card-title">{{ post.city }}</h6>
                         <p class="card-title truncated"> {{ post.content|truncatechars:1000 }}
                             {% if post.content|length > 1000 %}<a href="#shown" class="see-more">See More</a>{%endif%}</p>

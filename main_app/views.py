@@ -87,11 +87,11 @@ def edit_profile(request):
         user.save()
     return redirect('profile')
 
-# city home routes
+# city-home routes
 def cities(request):
     return redirect('/cities/1')
 
-# individual city route
+# individual city by ID route (pretty URL)
 def city_index(request, city_id):
     city = City.objects.get(id=city_id)
     return redirect(f'/cities/{city.name.lower().replace(" ", "")}')
@@ -115,14 +115,14 @@ def city_index_by_name(request, city_name):
     }
     return render(request, 'cities/index.html', context)
 
-# edit post route
+# edit post route (pretty post URL)
 def post_by_city_name(request, city_name, post_id):
     post = Post.objects.get(id=post_id)
     edit_post = EditPostForm(instance=post)
     context = {'post': post, 'image': post.city.name.lower().replace(' ', '-') + '.jpg', 'edit_post':edit_post}
     return render(request, 'cities/post.html', context)
 
-# city post route
+# redirects to pretty post URL
 def post(request, city_id, post_id):
     city = City.objects.get(id=city_id)
     return redirect(f'/cities/{city.name.lower().replace(" ", "")}/{post_id}')
@@ -157,7 +157,3 @@ def delete_post(request, post_id):
         return redirect(f'/cities/{post.city.id}/{post.id}')
     post.delete()
     return redirect(f'/cities/{post.city.id}')
-    
-# profile playground
-def profile2(request):
-    return render(request, 'registration/profile2.html')

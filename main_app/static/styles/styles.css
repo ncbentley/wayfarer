@@ -229,10 +229,16 @@ button.edit:hover {
 
 #contributions {
     background-color: var(--cyan);
+    margin-bottom: 20px;
 }
 
 .contrib {
     color: var(--primary);
+}
+
+span.badge {
+    background-color: var(--primary);
+    color: var(--teal)
 }
 
 /* Cities Index */

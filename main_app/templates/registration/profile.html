@@ -10,7 +10,7 @@
                 <div class="container d-flex justify-content-center align-items-center">
                     <div class="row d-flex justify-content-around align-items-center my-auto w-100">
                         <!-- user card -->
-                        <div class="col-md-4 d-flex justify-content-center text-center my-auto">
+                        <div class="col-md-4 d-flex flex-column justify-content-center text-center my-auto">
                             <div id="profile" class="card shadow p-3 bg-white rounded mb-3">
                                 <div class="card-body">
 
@@ -52,26 +52,54 @@
                                     {%endif%}
                                 </div>
                             </div>
+                            <!-- contributions -->
+                            <h5 class="contrib">Contributed To:</h5>
+                            <div id="contributions" class="card shadow pt-3 rounded">
+                                <div class="card-body">
+                                    <!-- contributions -->
+                                    <div class="contributed">
+                                        {% if cities %}
+                                            {% if cities.sanfrancisco %}
+                                            <p class="sanfrancisco d-flex justify-content-around">San Francisco <span
+                                                    class="badge badge-dark mr-3">{{cities.sanfrancisco}}</span></p>
+                                            {% endif %}
+                                            {% if cities.seattle %}
+                                            <p class="seattle d-flex justify-content-around">Seattle <span class="badge badge-dark b">{{cities.seattle}}</span>
+                                            </p>
+                                            {% endif %}
+                                            {% if cities.london %}
+                                            <p class="london d-flex justify-content-around">London <span class="badge badge-dark">{{cities.london}}</span></p>
+                                            {% endif %}
+                                            {% if cities.sydney %}
+                                            <p class="sydney d-flex justify-content-around">Sydney <span class="badge badge-dark">{{cities.sydney}}</span></p>
+                                            {% endif %}
+                                        {% else %}
+                                            <p>No Contributions.</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                          <!-- user posts -->
                          <div class="col-md-5">
                             <h2 class="posts-title mb-4">My Posts</h2>
-                            <div class="overflow-auto p-2" style="max-height: 450px; width: 500px;">
+                            <div class="overflow-auto p-2" style="max-height: 600px; width: 500px;">
                                 {%for post in posts%}
                                 <a class="text-decoration-none post-link" href="{% url 'post' post.city.id post.id %}">
                                     <div id="profile-post" class="card shadow m-2 bg-white rounded">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{post.title}}</h5>
+                                            <h5 class="card-title">{{post.title|title}}</h5>
                                             <h6 class="card-title">{{post.city}}</h6>
                                         </div>
                                     </div>
                                 </a>
+                                {% empty %}
+                                    <p>No Posts.</p>
                                 {%endfor%}
                             </div>
                         </div>
                     </div>    
                         
-
                     <!-- Modal -->
                     <!-- edit Form -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -154,31 +182,6 @@
                                     </form>
                                 </div>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- contributions -->
-                <div class="col-3 d-column text-center" style="margin-left: 125px;">
-                    <h5 class="contrib">Contributed To:</h5>
-                    <div id="contributions" class="card shadow pt-3 rounded">
-                        <div class="card-body">
-                            <!-- contributions -->
-                            <div class="contributed">
-                                {% if cities.sanfrancisco %}
-                                <p class="sanfrancisco">San Francisco <span
-                                        class="badge badge-dark">{{cities.sanfrancisco}}</span></p>
-                                {% endif %}
-                                {% if cities.seattle %}
-                                <p class="seattle">Seattle <span class="badge badge-dark b">{{cities.seattle}}</span>
-                                </p>
-                                {% endif %}
-                                {% if cities.london %}
-                                <p class="london">London <span class="badge badge-dark">{{cities.london}}</span></p>
-                                {% endif %}
-                                {% if cities.sydney %}
-                                <p class="sydney">Sydney <span class="badge badge-dark">{{cities.sydney}}</span></p>
-                                {% endif %}
                             </div>
                         </div>
                     </div>
